@@ -1,0 +1,93 @@
+ <!-- INICIO DEL CONTAINER DE LA PAGINA -->
+ <div class="container">
+
+    <div class="row">
+        <div class="col-12 offset-lg-6 col-lg-6 text-center">
+            <div class="m-2 p-2">
+                <img title="MySpend" class="img-fluid w-50" src="/assets/logo/imgLogoPagina.png" alt="logo">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-12 offset-lg-6 col-lg-6">
+
+            <div class="contenedorFormLogin mb-5">
+
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    </div>
+                    <input type="text" id="txtEmail" tabindex="1" class="form-control"
+                        placeholder="Correo electrónico" required="required"
+                        title="Ingrese el correo electrónico" />
+                </div>
+
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                    </div>
+                    <input type="password" id="txtPassword" tabindex="2" class="form-control"
+                        placeholder="Contraseña" required="required" title="Ingrese la contraseña" />
+                </div>
+
+                <div class="form-group">
+                    <button title="Iniciar sesión" class="btn btn-block btnVerdeClaro" tabindex="3"
+                        onclick="IniciarSesion()">Iniciar
+                        sesión</button>
+                </div>
+
+                <div class="text-center">
+                    <label>
+                        <a id="lblError" title="Error al intentar iniciar sesión" class="text-danger"></a>
+                    </label>
+                </div>
+
+                <div class="text-center">
+                    <label>
+                        <a title="Reestablecer contraseña" class="gris" tabindex="4" href="">¿Olvidaste tu
+                            contraseña?</a>
+                    </label>
+                </div>
+
+                <div class="lineaDivisoraGris"></div>
+
+                <div class="form-group">
+                    <div class="offset-2 col-8">
+                        <button title="Registrarse" class="btn btn-block btnVerdeClaro"
+                            tabindex="5">Registrarse</button>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <label class="gris">Loguearse con</label>
+                </div>
+
+                <div class="text-center">
+                    <img title="Facebook" class="img-fluid" src="/assets/logo/imgFacebook.png" alt="logo facebook"
+                        tabindex="5">
+                    <img title="Twitter" class="img-fluid" src="/assets/logo/imgTwitter.png" alt="logo twitter"
+                        tabindex="6">
+                    <img title="Google" class="img-fluid" src="/assets/logo/imgGoogle.png" alt="logo google"
+                        tabindex="7">
+                </div>
+
+            </div>
+            <!-- FIN: CONTENEDOR LOGIN -->
+
+        </div>
+
+    </div>
+
+</div>
+<!-- FIN: CONTAINER DE LA PAGINA -->
+
+<!-- FIN: BODY -->
+
+ <!-- jQuery 3.5.1 -->
+ <script src="/src/utilidades/scripts/jquery.min.js"></script>
+ <script src="/src/utilidades/scripts/utilitarios.js"></script>
+
+ <!-- BOOTSTRAP .JS 4.5.2 -->
+ <script src="bootstrap/js/bootstrap.min.js"></script>

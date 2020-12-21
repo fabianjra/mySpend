@@ -1,0 +1,30 @@
+.contenedorFormLogin {
+    border-radius: 10px;
+    background: gray;
+    padding: 20px;
+    background-color: #34445f;
+    -webkit-box-shadow: rgb(18, 21, 27) 0px 0px 10px 1px;
+    -moz-box-shadow: rgb(18, 21, 27) 0px 0px 10px 1px;
+    box-shadow: rgb(18, 21, 27) 0px 0px 10px 1px;
+}
+
+.btnVerdeClaro {
+    background: rgb(58, 215, 196);
+    background: linear-gradient(90deg, rgba(58, 215, 196, 1) 0%, rgba(1, 183, 208, 1) 100%);
+    color: #ffffff;
+}
+
+.lineaDivisoraGris {
+    align-items: center;
+    border-bottom: 1px solid #dadde1;
+    text-align: center;
+    margin: 20px 15px;
+}
+
+.blanco {
+    color: #ffffff !important;
+}
+
+.gris {
+    color: #99a8bc !important;
+}
