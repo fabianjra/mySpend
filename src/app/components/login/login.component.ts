@@ -7,7 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  public lblError: string = "";
+  public txtUsername: any;
+  public txtPassword: any;
+
+  constructor() {
+
+  }
+
+  IniciarSesion() {
+
+    this.lblError = "";
+
+    if (this.txtUsername == "" && this.txtPassword == "") {
+      this.lblError = "Se deben ingresar los campos";
+    }
+
+  }
 
   ngOnInit(): void {
   }
