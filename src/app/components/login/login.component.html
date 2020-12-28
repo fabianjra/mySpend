@@ -17,7 +17,7 @@
 
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        <span class="input-group-text"><fa-icon [icon]="faUser"></fa-icon></span>
                     </div>
                     <input type="text" [(ngModel)]="txtUsername" (input)="txtUsernameChanged()"
                         tabindex="1" class="form-control" placeholder="Correo electrónico" required="required"
@@ -26,7 +26,7 @@
 
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                        <span class="input-group-text"><fa-icon [icon]="faLock"></fa-icon></span>
                     </div>
                     <input type="password" [(ngModel)]="txtPassword" (input)="txtPasswordChanged()"
                         tabindex="2" class="form-control" placeholder="Contraseña" required="required"

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -7,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  //FontAwesome
+  faUser = faUser;
+  faLock = faLock;
+
   public lblError: string;
   public txtUsername: string;
   public txtPassword: string;
 
+   //Called first time before the ngOnInit()
   constructor() {
 
     //Se inicializan los campos como string vacios
@@ -44,6 +50,7 @@ export class LoginComponent implements OnInit {
     this.lblError = "";
   }
 
+  //Called after the constructor and called  after the first ngOnChanges()
   ngOnInit(): void {
   }
 
