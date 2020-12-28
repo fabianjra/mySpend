@@ -7,13 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 //Componentes
+import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
 
 @NgModule({
   declarations: [
+    AppComponent,
     LoginComponent,
-    MainmenuComponent
+    MainmenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,6 +24,6 @@ import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [LoginComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
