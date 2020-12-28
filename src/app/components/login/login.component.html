@@ -19,16 +19,18 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                     </div>
-                    <input type="text" [(ngModel)]="txtUsername" id="txtUsername" tabindex="1" class="form-control" placeholder="Correo electrónico"
-                        required="required" title="Ingrese el correo electrónico" />
+                    <input type="text" [(ngModel)]="txtUsername" (input)="txtUsernameChanged()"
+                        tabindex="1" class="form-control" placeholder="Correo electrónico" required="required"
+                        title="Ingrese el correo electrónico" />
                 </div>
 
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-lock"></i></span>
                     </div>
-                    <input type="password" [(ngModel)]="txtPassword" id="txtPassword" tabindex="2" class="form-control" placeholder="Contraseña"
-                        required="required" title="Ingrese la contraseña" /> 
+                    <input type="password" [(ngModel)]="txtPassword" (input)="txtPasswordChanged()"
+                        tabindex="2" class="form-control" placeholder="Contraseña" required="required"
+                        title="Ingrese la contraseña" />
                 </div>
 
                 <div class="form-group">
