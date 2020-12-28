@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -16,8 +17,8 @@ export class LoginComponent implements OnInit {
   public txtUsername: string;
   public txtPassword: string;
 
-   //Called first time before the ngOnInit()
-  constructor() {
+  //Called first time before the ngOnInit()
+  constructor(private router: Router) {
 
     //Se inicializan los campos como string vacios
     this.lblError = "";
@@ -31,10 +32,9 @@ export class LoginComponent implements OnInit {
 
       if (this.txtUsername == "" || this.txtPassword == "") {
         this.lblError = "Se debe ingresar el usuario y contraseña";
-      }
-      else {
+      } else {
         //F: Consulta en firebase
-        //window.location = "mainmenu.html";
+        this.router.navigate(['mainmenu']);
       }
 
     } catch (error) {
