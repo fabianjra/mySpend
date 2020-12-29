@@ -1,0 +1,19 @@
+/* Quita el espacio a la iquierda y derecha de los botones de los pills */
+#pills-tab>li {
+    padding: 0px;
+}
+
+/* Enlace del TAB seleccioando en negrita y color verde */
+.nav-link.active {
+    background: rgb(58, 215, 196);
+    background: linear-gradient(90deg, rgba(58, 215, 196, 1) 0%, rgba(1, 183, 208, 1) 100%);
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.nav-link {
+    /* background: rgba(92, 92, 92, 0.52); */
+    color: #ffffff;
+    /* up, right, bottom, left */
+    padding: 25px 0px 25px 0px; 
+}
