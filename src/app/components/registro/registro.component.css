@@ -1,0 +1,9 @@
+.contenedorFormLogin {
+    border-radius: 10px;
+    background: gray;
+    padding: 20px;
+    background-color: #34445f;
+    -webkit-box-shadow: rgb(18, 21, 27) 0px 0px 10px 1px;
+    -moz-box-shadow: rgb(18, 21, 27) 0px 0px 10px 1px;
+    box-shadow: rgb(18, 21, 27) 0px 0px 10px 1px;
+}

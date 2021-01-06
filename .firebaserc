@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "myspend-4753e": {
+      "hosting": {
+        "mySpend": [
+          "myspend-4753e"
+        ]
+      }
+    }
+  }
+}

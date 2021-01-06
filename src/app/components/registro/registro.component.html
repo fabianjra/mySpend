@@ -1,0 +1,64 @@
+<!-- INICIO DEL CONTAINER DE LA PAGINA -->
+<div class="container">
+
+    <div class="row">
+        <div class="col-12 offset-lg-6 col-lg-6 text-center">
+            <div class="m-2 p-2">
+                <img title="MySpend" class="img-fluid w-50" src="/assets/logo/imgLogoPagina.png" alt="logo">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-12 offset-lg-6 col-lg-6">
+
+            <form [formGroup]="formRegistro" (ngSubmit)="frmRegistro_event()" class="contenedorFormLogin mb-5">
+
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><fa-icon [icon]="faUser"></fa-icon></span>
+                    </div>
+                    <input type="email" formControlName="txtEmail" (input)="txtUsername_changed()"
+                        tabindex="1" class="form-control" placeholder="Correo electrónico" required="required"
+                        title="Ingrese el correo electrónico" />
+                </div>
+
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><fa-icon [icon]="faLock"></fa-icon></span>
+                    </div>
+                    <input type="password" formControlName="txtPassword" (input)="txtPassword_changed()"
+                        tabindex="2" class="form-control" placeholder="Contraseña" required="required"
+                        title="Ingrese la contraseña" />
+                </div>
+
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><fa-icon [icon]="faCheck"></fa-icon></span>
+                    </div>
+                    <input type="password" formControlName="txtPasswordConfirm" (input)="txtPasswordConfirm_changed()"
+                        tabindex="3" class="form-control" placeholder="Confirmar contraseña" required="required"
+                        title="Ingrese la confirmación de la contraseña" />
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" id="btnLogin" title="Iniciar sesión" class="btn btn-block btnVerdeClaro"
+                        (click)="Registrarse_click()" tabindex="4">Registrarse</button>
+                </div>
+
+                <div class="text-center">
+                    <label>
+                        <a id="lblError" title="Error al intentar iniciar sesión" class="text-danger"> {{lblError}} </a>
+                    </label>
+                </div>
+
+            </form>
+            <!-- FIN: CONTENEDOR LOGIN -->
+
+        </div>
+
+    </div>
+
+</div>
+<!-- FIN: CONTAINER DE LA PAGINA -->
