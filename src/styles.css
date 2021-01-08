@@ -1,5 +1,10 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
+@font-face {
+    font-family: "Montserrat";
+    font-weight: 400;
+    src: url("/assets/fonts/Montserrat-Regular.ttf");
+}
 
 /*******************************
             GLOBALES
@@ -10,6 +15,7 @@ body {
     /* background: rgb(18,9,157);
     background: linear-gradient(0deg, rgba(18,9,157,1) 0%, rgba(13,97,184,1) 50%, rgba(2,130,156,1) 100%); */
     background-color: #303841;
+    font-family: 'Montserrat', sans-serif;
 }
 
 

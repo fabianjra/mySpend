@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faUser, faLock, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl } from "@angular/forms"; //Para el formulario de registro.
+import { Utilities } from 'src/app/shared/utilities';
 
 @Component({
   selector: 'app-registro',
@@ -47,7 +48,7 @@ export class RegistroComponent implements OnInit {
       // }
 
     } catch (error) {
-      //uEscribirError(arguments, ex);
+      Utilities.LogErrorThrow((new Error).stack, error);
     }
   }
 

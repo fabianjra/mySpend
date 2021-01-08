@@ -11,7 +11,7 @@ export class MainmenuComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log("pagina main menu");
+    console.log("Se ingresó a: pagina main menu");
   }
 
 }

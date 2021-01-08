@@ -9,9 +9,10 @@ import { ReactiveFormsModule } from "@angular/forms"; //Para el formulario de Lo
 
 //Componentes
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
-import { RegistroComponent } from './components/registro/registro.component';
+import { RegistroComponent } from './auth/registro/registro.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { RegistroComponent } from './components/registro/registro.component';
     LoginComponent,
     MainmenuComponent,
     RegistroComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

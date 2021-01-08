@@ -1,0 +1,54 @@
+/* Forma redonda y pequenas, a las imagenes del Navbar */
+.imgLogoNav{
+    width: 35px;
+    border-radius: 50%;
+}
+
+/* Transparencia en color negro al Navbar */
+.navbar{
+    /* opacity: 0.9; */
+    background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Transicion a color negro, al oprimir el boton del navbar (compacto) */
+.colorNegro{
+    background-color: rgba(0, 0, 0, 1) !important;
+    transition: all 1s;
+}
+
+/* Se utiliza el pointer del mouse como una mano, para indicar que es enlace */
+.cursorPointer{
+    cursor: pointer;
+}
+
+/*Cambiar el color del dropdown, para hacerlo igual al navbar (negro) */
+.navbar-nav .show .dropdown-menu {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+/*Cambiar el color del texto de cada item en el dropdown*/
+#navbarItemPrecios > .dropdown-menu > a{
+    color: #FFFFFF;
+}
+
+#navbarItemCatalogoGraduacion > .dropdown-menu > a{
+    color: #FFFFFF;
+}
+
+/*Cambiar el color al fondo del hover, para no hacerlo tan claro*/
+#navbarItemPrecios > .dropdown-menu > a:hover{
+    background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+#navbarItemCatalogoGraduacion > .dropdown-menu > a:hover{
+    background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/*Solo para tamaños de 991px o mas (momento al cambiarse de links a menu hamburguesa)*/
+@media (min-width: 991px){
+
+    /* Coloca hacia abajo el menu del dropdown, para que quede alineado con el NavBar */
+    .dropdown-menu{
+        margin: .7rem 0 0;
+    }
+}
