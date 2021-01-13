@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
   selector: 'app-mainmenu',
@@ -7,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainmenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private nav: NavbarService) { }
 
   ngOnInit(): void {
-
+    this.nav.hide();
     console.log("Se ingresó a: pagina main menu");
   }
 

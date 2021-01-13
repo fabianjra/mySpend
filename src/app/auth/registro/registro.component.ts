@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { faUser, faLock, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl } from "@angular/forms"; //Para el formulario de registro.
 import { Utilities } from 'src/app/shared/utilities';
+import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
   selector: 'app-registro',
@@ -25,7 +26,7 @@ export class RegistroComponent implements OnInit {
 
   public lblError: string;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private nav: NavbarService) {
 
     this.lblError = "";
   }
@@ -69,6 +70,7 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.nav.show();
   }
 
 }

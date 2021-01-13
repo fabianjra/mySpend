@@ -13,6 +13,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { HomeComponent } from './components/incio/home/home.component';
+import { NavbarService } from './services/navbar.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     LoginComponent,
     MainmenuComponent,
     RegistroComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [NavbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

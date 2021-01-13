@@ -2,6 +2,8 @@
 .imgLogoNav{
     width: 35px;
     border-radius: 50%;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 /* Transparencia en color negro al Navbar */
@@ -42,6 +44,16 @@
 
 #navbarItemCatalogoGraduacion > .dropdown-menu > a:hover{
     background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Para: Bajar el contenido de la pagina, en caso de que esté activo el navbar y asi no mostrar
+   en un inicio, contenido oculto debajo del nabvar.
+   Equivalente de valores en boostrap:
+   3rem = mb5 
+   1.5rem = pb4*/
+.navbarActivo{
+    margin-bottom: 3rem !important;
+    padding-bottom: 1.5rem !important;
 }
 
 /*Solo para tamaños de 991px o mas (momento al cambiarse de links a menu hamburguesa)*/
