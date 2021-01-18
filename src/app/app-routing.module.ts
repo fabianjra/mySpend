@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistroComponent } from './auth/registro/registro.component';
-import { HomeComponent } from './components/incio/home/home.component';
+import { HomeComponent } from './components/inicio/home/home.component';
 import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
 
 //NOTA: Asteriscos (**): Cuando sea una ruta desconocida. Ejem de uso: Error pagina desconocida

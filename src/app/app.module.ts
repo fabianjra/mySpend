@@ -13,7 +13,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { HomeComponent } from './components/incio/home/home.component';
+import { HomeComponent } from './components/inicio/home/home.component';
 import { NavbarService } from './services/navbar.service';
 
 @NgModule({
