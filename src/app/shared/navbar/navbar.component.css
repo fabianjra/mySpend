@@ -49,11 +49,15 @@
 /* Para: Bajar el contenido de la pagina, en caso de que esté activo el navbar y asi no mostrar
    en un inicio, contenido oculto debajo del nabvar.
    Equivalente de valores en boostrap:
-   3rem = mb5 
-   1.5rem = pb4*/
+    pb5 = 3rem 
+    pb4 = 1.5rem
+    pb3 = 1rem
+    pb1 = 0.5rem
+    pb1 = 0.25rem
+   */
 .navbarActivo{
     margin-bottom: 3rem !important;
-    padding-bottom: 1.5rem !important;
+    padding-bottom: 0.5rem !important;
 }
 
 /*Solo para tamaños de 991px o mas (momento al cambiarse de links a menu hamburguesa)*/

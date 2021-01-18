@@ -15,6 +15,8 @@ import { RegistroComponent } from './auth/registro/registro.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HomeComponent } from './components/inicio/home/home.component';
 import { NavbarService } from './services/navbar.service';
+import { AboutComponent } from './components/inicio/about/about.component';
+import { ContactoComponent } from './components/inicio/contacto/contacto.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { NavbarService } from './services/navbar.service';
     MainmenuComponent,
     RegistroComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    AboutComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule,
