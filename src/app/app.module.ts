@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from "@angular/forms"; //Para el formulario de Lo
 //Componentes
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
-import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
+import { MainmenuComponent } from './components/menu/mainmenu/mainmenu.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HomeComponent } from './components/inicio/home/home.component';

@@ -1,7 +1,7 @@
 <nav *ngIf="nav.visible" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
     [class.colorNegro]="menuExpandido">
 
-    <a title="Pagina principal" routerLink="home/login">
+    <a title="Pagina principal" data-toggle="collapse" data-target=".navbar-collapse.show" routerLink="home/login">
         <label class="navbar-brand mb-0 h1">
             <img src="/assets/logo/imgNavbar.jpg" class="d-inline-block imgLogoNav cursorPointer" alt="">
             <label class="cursorPointer">mySpend</label>
@@ -18,8 +18,8 @@
         <ul class="navbar-nav mr-auto">
 
             <li id="navbarItemInicio" class="nav-item">
-                <a title="Pagina principal" class="nav-link" routerLink="home/login"
-                    routerLinkActive="active">Inicio<span class="sr-only">(current)</span></a>
+                <a title="Pagina principal" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show"
+                    routerLink="home/login" routerLinkActive="active">Inicio<span class="sr-only">(current)</span></a>
             </li>
 
             <!-- COMBO
@@ -38,13 +38,14 @@
             </li> -->
 
             <li id="navbarItemCatalogoGraduacion" class="nav-item">
-                <a title="Catalogo para los paquetes de graduación" class="nav-link" routerLink="home/contacto"
+                <a title="Catalogo para los paquetes de graduación" class="nav-link" data-toggle="collapse"
+                    data-target=".navbar-collapse.show" routerLink="home/contacto"
                     routerLinkActive="active">Contacto</a>
             </li>
 
             <li id="navbarItemIniciarSesion" class="nav-item">
-                <a title="Intranet de uso interno del personal" class="nav-link" routerLink="home/about"
-                    routerLinkActive="active">Acerca de</a>
+                <a title="Intranet de uso interno del personal" class="nav-link" data-toggle="collapse"
+                    data-target=".navbar-collapse.show" routerLink="home/about" routerLinkActive="active">Acerca de</a>
             </li>
         </ul>
 

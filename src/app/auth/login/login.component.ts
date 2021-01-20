@@ -68,7 +68,6 @@ export class LoginComponent implements OnInit {
 
   //Called after the constructor and called  after the first ngOnChanges()
   ngOnInit(): void {
-    console.log("carga login");
   }
 
 }

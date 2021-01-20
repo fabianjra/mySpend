@@ -1,9 +1,33 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
 @font-face {
-    font-family: "Montserrat";
+    font-family: "Montserrat-Regular";
     font-weight: 400;
     src: url("/assets/fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Thin";
+    font-weight: 100;
+    src: url("/assets/fonts/Montserrat-Thin.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat-Light";
+    font-weight: 100;
+    src: url("/assets/fonts/Montserrat-Light.ttf");
+}
+
+/*******************************
+            FUENTES
+*******************************/
+
+.montserrat-thin{
+    font-family: 'Montserrat-Thin', sans-serif !important;
+}
+
+.montserrat-light{
+    font-family: 'Montserrat-Light', sans-serif !important;
 }
 
 /*******************************
@@ -15,7 +39,11 @@ body {
     /* background: rgb(18,9,157);
     background: linear-gradient(0deg, rgba(18,9,157,1) 0%, rgba(13,97,184,1) 50%, rgba(2,130,156,1) 100%); */
     background-color: #303841;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat-Regular', sans-serif;
+}
+
+.marcoBlanco{
+    border: solid #ffffff 1px;
 }
 
 

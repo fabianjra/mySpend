@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { NavbarService } from 'src/app/services/navbar.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private nav: NavbarService) { }
+  constructor(private nav: NavbarService, private router: Router) { }
 
   ngOnInit(): void {
     this.nav.show();

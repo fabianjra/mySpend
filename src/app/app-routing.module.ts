@@ -5,20 +5,23 @@ import { RegistroComponent } from './auth/registro/registro.component';
 import { AboutComponent } from './components/inicio/about/about.component';
 import { ContactoComponent } from './components/inicio/contacto/contacto.component';
 import { HomeComponent } from './components/inicio/home/home.component';
-import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
+import { MainmenuComponent } from './components/menu/mainmenu/mainmenu.component';
 
 //NOTA: Asteriscos (**): Cuando sea una ruta desconocida. Ejem de uso: Error pagina desconocida
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-
-  { path: 'login', component: LoginComponent },
-  { path: 'contacto', component: ContactoComponent },
-  { path: 'about', component: AboutComponent },
-
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'home', component: HomeComponent, children:
+      [
+        { path: '', redirectTo: 'login', pathMatch: 'full' },
+        { path: 'login', component: LoginComponent },
+        { path: 'contacto', component: ContactoComponent },
+        { path: 'about', component: AboutComponent }
+      ]
+  },
   { path: 'registro', component: RegistroComponent },
   { path: 'mainmenu', component: MainmenuComponent },
-  { path: '**', redirectTo: '/', pathMatch: 'full' }
+  { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
