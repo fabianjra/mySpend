@@ -12,12 +12,6 @@
     background-color: rgba(0, 0, 0, 0.6) !important;
 }
 
-/* Transicion a color negro, al oprimir el boton del navbar (compacto) */
-.colorNegro{
-    background-color: rgba(0, 0, 0, 1) !important;
-    transition: all 1s;
-}
-
 /* Se utiliza el pointer del mouse como una mano, para indicar que es enlace */
 .cursorPointer{
     cursor: pointer;
@@ -60,11 +54,21 @@
     padding-bottom: 3rem !important;
 }
 
-/*Solo para tamaños de 991px o mas (momento al cambiarse de links a menu hamburguesa)*/
-@media (min-width: 991px){
+/*Solo para tamaños de 992px o mas*/
+@media (min-width: 992px){
 
     /* Coloca hacia abajo el menu del dropdown, para que quede alineado con el NavBar */
     .dropdown-menu{
         margin: .7rem 0 0;
+    }
+}
+
+/*Solo para tamaños de 991px o menos (momento al cambiarse de links a menu hamburguesa)*/
+@media (max-width: 991px){
+
+    /* Transicion a color negro, al oprimir el boton del navbar (compacto) */
+    .colorNegro{
+        background-color: rgba(0, 0, 0, 1) !important;
+        transition: all 1s;
     }
 }
