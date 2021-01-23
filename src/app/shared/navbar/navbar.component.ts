@@ -27,7 +27,11 @@ export class NavbarComponent implements OnInit {
   //de expandirse en pantallas pequeñas, por el menu hamburguesa.
   btnNavbar_click() {
     try {
-      this.menuExpandido = !this.menuExpandido;
+
+      //Se realiza el cambio de color a negro o transparente, solamente cuando sea un telefono o pantalla pequeña.
+      if (this.esMenuHamburguesa) {
+        this.menuExpandido = !this.menuExpandido;
+      }
     } catch (error) {
       Utilities.LogErrorThrow((new Error).stack, error);
     }

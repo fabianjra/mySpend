@@ -8,19 +8,25 @@ import { HomeComponent } from './components/inicio/home/home.component';
 import { MainmenuComponent } from './components/menu/mainmenu/mainmenu.component';
 
 //NOTA: Asteriscos (**): Cuando sea una ruta desconocida. Ejem de uso: Error pagina desconocida
+/*
+Secciones:
+1: Espacion vacio
+2: Pantallas estaticas, solo visual.
+3: Pantallas de Authorization.
+4: Pantallas del menu de acciones transaccionales.
+*/
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: 'home', component: HomeComponent, children:
-      [
-        { path: '', redirectTo: 'login', pathMatch: 'full' },
-        { path: 'login', component: LoginComponent },
-        { path: 'contacto', component: ContactoComponent },
-        { path: 'about', component: AboutComponent }
-      ]
-  },
+
+  { path: 'home', component: HomeComponent },
+  { path: 'contacto', component: ContactoComponent },
+  { path: 'about', component: AboutComponent },
+
+  { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
+
   { path: 'mainmenu', component: MainmenuComponent },
+
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 

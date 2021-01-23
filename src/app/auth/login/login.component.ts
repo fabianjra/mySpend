@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl } from "@angular/forms"; //Para el formulario de registro.
 import { Utilities } from 'src/app/shared/utilities';
 
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   });
 
   //FontAwesome
-  faUser = faUser;
+  faEnvelope = faEnvelope;
   faLock = faLock;
 
   public lblError: string;

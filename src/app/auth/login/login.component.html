@@ -1,86 +1,65 @@
-<!-- INICIO DEL CONTAINER DE LA PAGINA -->
-<div class="container">
+<form class="contenedorFormLogin mb-5">
 
-    <div class="row">
-
-        <div class="col-12 offset-lg-6 col-lg-6">
-
-            <form class="contenedorFormLogin mb-5">
-
-                <div class="mb-4">
-                    <h1 class="text-center blanco montserrat-thin mb-0">mySpend</h1>
-                    <p class="text-center blanco montserrat-light">Controla tus finanzas</p>
-                </div>
-
-                <div class="input-group form-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <fa-icon [icon]="faUser"></fa-icon>
-                        </span>
-                    </div>
-                    <input type="text" [(ngModel)]="txtUsername" name="username" (input)="txtUsername_changed()"
-                        tabindex="1" class="form-control" placeholder="Correo electrónico" required="required"
-                        title="Ingrese el correo electrónico" />
-                </div>
-
-                <div class="input-group form-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <fa-icon [icon]="faLock"></fa-icon>
-                        </span>
-                    </div>
-                    <input type="password" [(ngModel)]="txtPassword" name="password" (input)="txtPassword_changed()"
-                        tabindex="2" class="form-control" placeholder="Contraseña" required="required"
-                        title="Ingrese la contraseña" />
-                </div>
-
-                <div class="form-group">
-                    <button id="btnLogin" title="Iniciar sesión" class="btn btn-block btnVerdeClaro"
-                        (click)="IniciarSesion_click()" tabindex="3">Iniciar
-                        sesión</button>
-                </div>
-
-                <div class="text-center">
-                    <label>
-                        <a id="lblError" title="Error al intentar iniciar sesión" class="text-danger"> {{lblError}} </a>
-                    </label>
-                </div>
-
-                <div class="text-center">
-                    <label>
-                        <a title="Reestablecer contraseña" class="gris" tabindex="4" href="">¿Olvidaste tu
-                            contraseña?</a>
-                    </label>
-                </div>
-
-                <div class="lineaDivisoraGris"></div>
-
-                <div class="form-group">
-                    <div class="offset-2 col-8">
-                        <button title="Registrarse" class="btn btn-block btnVerdeClaro" (click)="Registrarse_click()"
-                            tabindex="5">Registrarse</button>
-                    </div>
-                </div>
-
-                <div class="text-center mt-4">
-                    <label class="gris">Loguearse con</label>
-                </div>
-
-                <div class="text-center">
-                    <img title="Facebook" class="img-fluid" src="/assets/logo/imgFacebook.png" alt="logo facebook"
-                        tabindex="5">
-                    <img title="Twitter" class="img-fluid" src="/assets/logo/imgTwitter.png" alt="logo twitter"
-                        tabindex="6">
-                    <img title="Google" class="img-fluid" src="/assets/logo/imgGoogle.png" alt="logo google"
-                        tabindex="7">
-                </div>
-
-            </form>
-            <!-- FIN: CONTENEDOR LOGIN -->
-
-        </div>
-
+    <div class="mb-4">
+        <h1 class="text-center blanco montserrat-thin mb-0">mySpend</h1>
+        <p class="text-center blanco montserrat-light">Controla tus finanzas</p>
     </div>
 
-</div>
-<!-- FIN: CONTAINER DE LA PAGINA -->
+    <div class="input-group form-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <fa-icon [icon]="faEnvelope"></fa-icon>
+            </span>
+        </div>
+        <input type="text" [(ngModel)]="txtUsername" name="username" (input)="txtUsername_changed()" tabindex="1"
+            class="form-control" placeholder="Correo electrónico" required="required"
+            title="Ingrese el correo electrónico" />
+    </div>
+
+    <div class="input-group form-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <fa-icon [icon]="faLock"></fa-icon>
+            </span>
+        </div>
+        <input type="password" [(ngModel)]="txtPassword" name="password" (input)="txtPassword_changed()" tabindex="2"
+            class="form-control" placeholder="Contraseña" required="required" title="Ingrese la contraseña" />
+    </div>
+
+    <div class="form-group">
+        <button id="btnLogin" title="Iniciar sesión" class="btn btn-block btnVerdeClaro" (click)="IniciarSesion_click()"
+            tabindex="3">Iniciar
+            sesión</button>
+    </div>
+
+    <div class="text-center">
+        <label>
+            <a id="lblError" title="Error al intentar iniciar sesión" class="rojo montserrat-semibold"> {{lblError}} </a>
+        </label>
+    </div>
+
+    <div class="text-center">
+        <label>
+            <a title="Reestablecer contraseña" class="gris" tabindex="4" href="">¿Olvidaste tu
+                contraseña?</a>
+        </label>
+    </div>
+
+    <div class="lineaDivisoraGris"></div>
+
+    <div class="offset-2 col-8">
+        <button type="button" title="Registrarse" class="btn btn-block btnVerdeClaro" (click)="Registrarse_click()"
+            tabindex="5">Registrarse</button>
+    </div>
+
+    <div class="text-center mt-4">
+        <label class="gris">Loguearse con</label>
+    </div>
+
+    <div class="text-center">
+        <img title="Facebook" class="img-fluid" src="/assets/logo/imgFacebook.png" alt="logo facebook" tabindex="5">
+        <img title="Twitter" class="img-fluid" src="/assets/logo/imgTwitter.png" alt="logo twitter" tabindex="6">
+        <img title="Google" class="img-fluid" src="/assets/logo/imgGoogle.png" alt="logo google" tabindex="7">
+    </div>
+
+</form>

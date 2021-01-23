@@ -18,6 +18,12 @@
     src: url("/assets/fonts/Montserrat-Light.ttf");
 }
 
+@font-face {
+    font-family: "Montserrat-SemiBold";
+    font-weight: 100;
+    src: url("/assets/fonts/Montserrat-SemiBold.ttf");
+}
+
 /*******************************
             FUENTES
 *******************************/
@@ -30,6 +36,9 @@
     font-family: 'Montserrat-Light', sans-serif !important;
 }
 
+.montserrat-semibold{
+    font-family: 'Montserrat-SemiBold', sans-serif !important;
+}
 /*******************************
             GLOBALES
 *******************************/
@@ -47,8 +56,15 @@ body {
 *******************************/
 
 .btnVerdeClaro {
-    background: rgb(58, 215, 196);
-    background: linear-gradient(90deg, rgba(58, 215, 196, 1) 0%, rgba(1, 183, 208, 1) 100%);
+    /* background: rgb(58, 215, 196); */
+    /* background: linear-gradient(90deg, rgba(58, 215, 196, 1) 0%, rgba(1, 183, 208, 1) 100%); */ /*ORIGINAL*/
+    background: radial-gradient(circle, rgb(3, 160, 180) 0%, rgb(62, 226, 207) 100%);
+    color: #ffffff;
+}
+
+.btnGris{
+    /* background: rgb(86,96,108); */
+    background: radial-gradient(circle, rgba(86,96,108,1) 0%, rgba(99,109,128,1) 100%);
     color: #ffffff;
 }
 
@@ -61,4 +77,28 @@ body {
 
 .gris {
     color: #99a8bc !important;
+}
+
+.rojo {
+    color: #dd7777 !important;
+}
+
+/*******************************
+            FORMAS
+*******************************/
+
+.lineaDivisoraGris {
+    align-items: center;
+    border-bottom: 1px solid #dadde1;
+    text-align: center;
+    margin: 20px 15px;
+}
+
+/*Solo para tamaños de 991px o menos (momento en el que aparece el menu hamburguesa)*/
+@media (max-width: 991px){
+
+    /* Ocultar un elemento, cuando es en pantalla con menu hamburguesa (no-lg) */
+    .ocultarEnMobile{
+        display: none;
+    }
 }

@@ -7,10 +7,3 @@
     -moz-box-shadow: rgb(18, 21, 27) 0px 0px 10px 1px;
     box-shadow: rgb(18, 21, 27) 0px 0px 10px 1px;
 }
-
-.lineaDivisoraGris {
-    align-items: center;
-    border-bottom: 1px solid #dadde1;
-    text-align: center;
-    margin: 20px 15px;
-}

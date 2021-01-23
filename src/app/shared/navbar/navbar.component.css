@@ -54,7 +54,7 @@
     padding-bottom: 3rem !important;
 }
 
-/*Solo para tamaños de 992px o mas*/
+/*Solo para tamaños de 992px o mas (momento en el que se quita el menu hamburguesa) */
 @media (min-width: 992px){
 
     /* Coloca hacia abajo el menu del dropdown, para que quede alineado con el NavBar */
@@ -63,7 +63,7 @@
     }
 }
 
-/*Solo para tamaños de 991px o menos (momento al cambiarse de links a menu hamburguesa)*/
+/*Solo para tamaños de 991px o menos (momento en el que aparece el menu hamburguesa)*/
 @media (max-width: 991px){
 
     /* Transicion a color negro, al oprimir el boton del navbar (compacto) */

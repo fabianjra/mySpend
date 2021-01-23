@@ -3,7 +3,7 @@
 
     <a title="Pagina principal" data-toggle="collapse"
         [attr.data-target]="esMenuHamburguesa ? '#navbarSupportedContent' : '' " (click)="btnNavbar_click()"
-        routerLink="home/login">
+        routerLink="home">
         <label class="navbar-brand mb-0 h1">
             <img src="/assets/logo/imgNavbar.jpg" class="d-inline-block imgLogoNav cursorPointer" alt="">
             <label class="cursorPointer">mySpend</label>
@@ -19,23 +19,37 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
 
-            <li id="navbarItemInicio" class="nav-item">
+            <li class="nav-item">
                 <a title="Pagina principal" class="nav-link" data-toggle="collapse"
                     [attr.data-target]="esMenuHamburguesa ? '#navbarSupportedContent' : '' " (click)="btnNavbar_click()"
-                    routerLink="home/login" routerLinkActive="active">Inicio<span class="sr-only">(current)</span></a>
+                    routerLink="home" routerLinkActive="active">Inicio<span class="sr-only">(current)</span></a>
             </li>
 
-            <li id="navbarItemCatalogoGraduacion" class="nav-item">
-                <a title="Catalogo para los paquetes de graduación" class="nav-link" data-toggle="collapse"
+            <li class="nav-item">
+                <a title="Contacto" class="nav-link" data-toggle="collapse"
                     [attr.data-target]="esMenuHamburguesa ? '#navbarSupportedContent' : '' " (click)="btnNavbar_click()"
-                    routerLink="home/contacto" routerLinkActive="active">Contacto</a>
+                    routerLink="contacto" routerLinkActive="active">Contacto</a>
             </li>
 
-            <li id="navbarItemIniciarSesion" class="nav-item">
-                <a title="Intranet de uso interno del personal" class="nav-link" data-toggle="collapse"
+            <li class="nav-item">
+                <a title="Más información sobre esta pagina" class="nav-link" data-toggle="collapse"
                     [attr.data-target]="esMenuHamburguesa ? '#navbarSupportedContent' : '' " (click)="btnNavbar_click()"
-                    routerLink="home/about" routerLinkActive="active">Acerca
-                    de</a>
+                    routerLink="about" routerLinkActive="active">Acerca de</a>
+            </li>
+
+        </ul>
+
+        <ul class="navbar-nav">
+            <!-- <li class="nav-item">
+                <a title="Iniciar sesión" class="nav-link" data-toggle="collapse"
+                    [attr.data-target]="esMenuHamburguesa ? '#navbarSupportedContent' : '' " (click)="btnNavbar_click()"
+                    routerLink="home" routerLinkActive="">Iniciar sesión</a>
+            </li> -->
+
+            <li class="nav-item">
+                <a title="Registrarse como nuevo usuario" class="nav-link" data-toggle="collapse"
+                    [attr.data-target]="esMenuHamburguesa ? '#navbarSupportedContent' : '' " (click)="btnNavbar_click()"
+                    routerLink="registro" routerLinkActive="active">Registrarse</a>
             </li>
         </ul>
 
