@@ -1,4 +1,4 @@
-<form class="contenedorFormLogin mb-5">
+<form [formGroup]="formLogin" (ngSubmit)="formLogin_event()" class="contenedorFormLogin mb-5">
 
     <div class="mb-4">
         <h1 class="text-center blanco montserrat-thin mb-0">mySpend</h1>
@@ -11,9 +11,8 @@
                 <fa-icon [icon]="faEnvelope"></fa-icon>
             </span>
         </div>
-        <input type="text" [(ngModel)]="txtUsername" name="username" (input)="txtUsername_changed()" tabindex="1"
-            class="form-control" placeholder="Correo electrónico" required="required"
-            title="Ingrese el correo electrónico" />
+        <input type="text" formControlName="email" (input)="text_changed()" tabindex="1" class="form-control"
+            placeholder="Correo electrónico" required="required" title="Ingrese el correo electrónico" />
     </div>
 
     <div class="input-group form-group">
@@ -22,19 +21,19 @@
                 <fa-icon [icon]="faLock"></fa-icon>
             </span>
         </div>
-        <input type="password" [(ngModel)]="txtPassword" name="password" (input)="txtPassword_changed()" tabindex="2"
-            class="form-control" placeholder="Contraseña" required="required" title="Ingrese la contraseña" />
+        <input type="password" formControlName="password" (input)="text_changed()" tabindex="2" class="form-control"
+            placeholder="Contraseña" required="required" title="Ingrese la contraseña" />
     </div>
 
     <div class="form-group">
-        <button id="btnLogin" title="Iniciar sesión" class="btn btn-block btnVerdeClaro" (click)="IniciarSesion_click()"
-            tabindex="3">Iniciar
+        <button type="submit" title="Iniciar sesión" class="btn btn-block btnVerdeClaro" tabindex="3">Iniciar
             sesión</button>
     </div>
 
     <div class="text-center">
         <label>
-            <a id="lblError" title="Error al intentar iniciar sesión" class="rojo montserrat-semibold"> {{lblError}} </a>
+            <a id="lblError" title="Error al intentar iniciar sesión" class="rojo montserrat-semibold"> {{lblError}}
+            </a>
         </label>
     </div>
 

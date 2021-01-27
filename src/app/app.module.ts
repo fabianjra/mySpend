@@ -6,6 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 //Custom Imports
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; //Para el estilo de imagen en input, etc.
 import { ReactiveFormsModule } from "@angular/forms"; //Para el formulario de Login.
+import { AngularFireModule } from '@angular/fire'; //Firebase (inicializar conexion con fb).
+import { AngularFireAuthModule } from '@angular/fire/auth'; //Authorization firebase.
+
+//Archivos de datos
+import { environment } from 'src/environments/environment';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -17,6 +22,9 @@ import { HomeComponent } from './components/inicio/home/home.component';
 import { NavbarService } from './services/navbar.service';
 import { AboutComponent } from './components/inicio/about/about.component';
 import { ContactoComponent } from './components/inicio/contacto/contacto.component';
+
+
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -34,9 +42,11 @@ import { ContactoComponent } from './components/inicio/contacto/contacto.compone
     FormsModule,
     FontAwesomeModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule
   ],
-  providers: [NavbarService],
+  providers: [NavbarService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

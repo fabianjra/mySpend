@@ -5,6 +5,7 @@ import { FormGroup, FormControl } from "@angular/forms"; //Para el formulario de
 import { Utilities } from 'src/app/shared/utilities';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { Location } from '@angular/common'; //Para volver atras
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-registro',
@@ -36,7 +37,11 @@ export class RegistroComponent implements OnInit {
 
   public lblError: string;
 
-  constructor(private router: Router, private nav: NavbarService, private location: Location) {
+  constructor(
+    private router: Router,
+    private nav: NavbarService,
+    private location: Location,
+    private authService: AuthService) {
 
     this.lblError = "";
     this.txtNombre = this.formRegistro.controls['txtNombre'];
@@ -67,7 +72,12 @@ export class RegistroComponent implements OnInit {
         if (password != confirm) {
           this.lblError = "La contraseña y la confirmación no coinciden";
         } else {
-          //F: registro en firebase
+
+          //Obtener las variables directamtne del Form.
+          //const {txtEmail, txtPasswordConfirm} = this.formRegistro.value;
+
+          this.authService.Registrar(email, confirm);
+
           this.lblError = "registro en construcción";
         }
       }

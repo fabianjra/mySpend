@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl } from "@angular/forms"; //Para el formulario de registro.
 import { Utilities } from 'src/app/shared/utilities';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +12,7 @@ import { Utilities } from 'src/app/shared/utilities';
 })
 export class LoginComponent implements OnInit {
 
-  //F: PARA REGISTRO DE USUARIO
-  registerForm = new FormGroup({
+  formLogin = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
   });
@@ -22,27 +22,33 @@ export class LoginComponent implements OnInit {
   faLock = faLock;
 
   public lblError: string;
-  public txtUsername: string;
-  public txtPassword: string;
 
   //Called first time before the ngOnInit()
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthService) {
 
     //Se inicializan los campos como string vacios
     this.lblError = "";
-    this.txtUsername = "";
-    this.txtPassword = "";
   }
 
-  IniciarSesion_click() {
+  formLogin_event() {
     try {
       this.lblError = "";
+      const { email, password } = this.formLogin.value;
 
-      if (this.txtUsername == "" || this.txtPassword == "") {
-        this.lblError = "Se debe ingresar el usuario y contraseña";
+      console.log("1 mail:" + email);
+      console.log("2 password:" + password);
+
+
+      if (email == "" || password == "") {
+        this.lblError = "Se deben ingresar los datos";
       } else {
-        //F: Consulta en firebase
-        this.router.navigate(['mainmenu']);
+
+        let result = this.authService.Login(email, password);
+
+        console.log(result);
+
+        //this.router.navigate(['mainmenu']);
+
       }
 
     } catch (error) {
@@ -58,11 +64,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  txtUsername_changed(): void {
-    this.lblError = "";
-  }
-
-  txtPassword_changed(): void {
+  text_changed(): void {
     this.lblError = "";
   }
 
