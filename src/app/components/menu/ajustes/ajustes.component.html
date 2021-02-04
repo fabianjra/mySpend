@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-12">
+
+        <div class="list-group">
+
+            <button type="button"
+                class="list-group-item d-flex justify-content-between align-items-center list-group-item-action" disabled >
+                Cambiar mi nombre
+                <span><fa-icon [icon]="this.fontAwesome.faChevronRight"></fa-icon></span>
+            </button>
+
+            <button type="button"
+                class="list-group-item d-flex justify-content-between align-items-center list-group-item-action" disabled >
+                Cambiar mi contraseña
+                <span><fa-icon [icon]="this.fontAwesome.faChevronRight"></fa-icon></span>
+            </button>
+
+            <button type="button" (click)="CerrarSession_click()"
+                class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                Cerrar sesión
+                <span><fa-icon [icon]="this.fontAwesome.faChevronRight"></fa-icon></span>
+            </button>
+        </div>
+
+    </div>
+</div>

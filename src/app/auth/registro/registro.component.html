@@ -1,6 +1,6 @@
 <div class="col-12 offset-lg-6 col-lg-6">
 
-    <form [formGroup]="formRegistro" (ngSubmit)="frmRegistro_event()" class="contenedorFormLogin mb-5">
+    <form [formGroup]="frmRegistro" (ngSubmit)="frmRegistro_event()" class="contenedorFormLogin mb-5">
 
         <div class="mb-4">
             <h1 class="text-center blanco montserrat-thin mb-0">mySpend</h1>
@@ -11,16 +11,16 @@
             <div class="input-group form-group col-6">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
-                        <fa-icon [icon]="faUser"></fa-icon>
+                        <fa-icon [icon]="this.fontAwesome.faUser"></fa-icon>
                     </span>
                 </div>
 
-                <input type="" formControlName="txtNombre" (input)="txt_changed()" tabindex="10" class="form-control"
+                <input type="" formControlName="nombre" (input)="txt_changed()" tabindex="10" class="form-control"
                     placeholder="Nombre" required="required" title="Ingrese el nombre de usuario" />
             </div>
 
             <div class="input-group form-group col-6">
-                <input type="" formControlName="txtApellido" (input)="txt_changed()" tabindex="20" class="form-control"
+                <input type="" formControlName="apellido" (input)="txt_changed()" tabindex="20" class="form-control"
                     placeholder="Apellido" title="Ingrese el apellido de usuario" />
             </div>
         </div>
@@ -28,30 +28,30 @@
         <div class="input-group form-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    <fa-icon [icon]="faEnvelope"></fa-icon>
+                    <fa-icon [icon]="this.fontAwesome.faEnvelope"></fa-icon>
                 </span>
             </div>
-            <input type="email" formControlName="txtEmail" (input)="txt_changed()" tabindex="30" class="form-control"
+            <input type="email" formControlName="email" (input)="txt_changed()" tabindex="30" class="form-control"
                 placeholder="Correo electrónico" required="required" title="Ingrese el correo electrónico" />
         </div>
 
         <div class="input-group form-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    <fa-icon [icon]="faLock"></fa-icon>
+                    <fa-icon [icon]="this.fontAwesome.faLock"></fa-icon>
                 </span>
             </div>
-            <input type="password" formControlName="txtPassword" (input)="txt_changed()" tabindex="40"
+            <input type="password" formControlName="password" (input)="txt_changed()" tabindex="40"
                 class="form-control" placeholder="Contraseña" required="required" title="Ingrese la contraseña" />
         </div>
 
         <div class="input-group form-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    <fa-icon [icon]="faCheck"></fa-icon>
+                    <fa-icon [icon]="this.fontAwesome.faCheck"></fa-icon>
                 </span>
             </div>
-            <input type="password" formControlName="txtPasswordConfirm" (input)="txt_changed()" tabindex="50"
+            <input type="password" formControlName="passwordConfirm" (input)="txt_changed()" tabindex="50"
                 class="form-control" placeholder="Confirmar contraseña" required="required"
                 title="Ingrese la confirmación de la contraseña" />
         </div>

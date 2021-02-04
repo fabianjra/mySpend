@@ -13,13 +13,6 @@ export class AuthService {
 
   async Login(email: string, password: string) {
     const result = await this.afAuth.signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        //Exitoso.
-      })
-      .catch((error) => {
-        //Error.
-        throw new Error(error);
-      })
 
     return result;
   }
@@ -27,13 +20,6 @@ export class AuthService {
   //F: La contraseña debe validarse con minimo 6 caracteres.
   async Registrar(email: string, password: string) {
     const result = await this.afAuth.createUserWithEmailAndPassword(email, password)
-      .then((result) => {
-        //Exitoso.
-      })
-      .catch((error) => {
-        //Error.
-        throw new Error(error);
-      })
 
     return result;
   }

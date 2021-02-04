@@ -7,8 +7,11 @@ import { ContactoComponent } from './components/inicio/contacto/contacto.compone
 import { HomeComponent } from './components/inicio/home/home.component';
 import { MainmenuComponent } from './components/menu/mainmenu/mainmenu.component';
 
-//NOTA: Asteriscos (**): Cuando sea una ruta desconocida. Ejem de uso: Error pagina desconocida
 /*
+NOTA: Asteriscos (**): Cuando sea una ruta desconocida. Ejem de uso: Error pagina desconocida.
+El pato '', se deja con redirectTo, porque si se utiliza diractamente el component: HomeComponent,
+no selecciona "inicio" en el navbar.
+
 Secciones:
 1: Espacion vacio
 2: Pantallas estaticas, solo visual.

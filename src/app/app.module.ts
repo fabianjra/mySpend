@@ -8,6 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; //Para el 
 import { ReactiveFormsModule } from "@angular/forms"; //Para el formulario de Login.
 import { AngularFireModule } from '@angular/fire'; //Firebase (inicializar conexion con fb).
 import { AngularFireAuthModule } from '@angular/fire/auth'; //Authorization firebase.
+import { ServiceWorkerModule } from '@angular/service-worker'; //PWA
 
 //Archivos de datos
 import { environment } from 'src/environments/environment';
@@ -19,12 +20,14 @@ import { MainmenuComponent } from './components/menu/mainmenu/mainmenu.component
 import { RegistroComponent } from './auth/registro/registro.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HomeComponent } from './components/inicio/home/home.component';
-import { NavbarService } from './services/navbar.service';
 import { AboutComponent } from './components/inicio/about/about.component';
 import { ContactoComponent } from './components/inicio/contacto/contacto.component';
+import { AjustesComponent } from './components/menu/ajustes/ajustes.component';
 
-
+//Servicios
+import { NavbarService } from './services/navbar.service';
 import { AuthService } from './services/auth.service';
+import { FontawesomeService } from './services/fontawesome.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { AuthService } from './services/auth.service';
     NavbarComponent,
     HomeComponent,
     AboutComponent,
-    ContactoComponent
+    ContactoComponent,
+    AjustesComponent
   ],
   imports: [
     BrowserModule,
@@ -44,9 +48,10 @@ import { AuthService } from './services/auth.service';
     AppRoutingModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [NavbarService, AuthService],
+  providers: [NavbarService, AuthService, FontawesomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

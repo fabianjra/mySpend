@@ -15,4 +15,19 @@
     color: #ffffff;
     /* up, right, bottom, left */
     padding: 25px 0px 25px 0px; 
+
+    background: radial-gradient(circle, rgba(86,96,108,0.6182969674556213) 0%, rgba(99,109,128,0.02066383136094674) 100%);
+}
+
+/*
+Agrega el color de fondo a los botones inactivos (mismo utilizado para el body).
+Agrega borde a los botones.
+Agrega margin left y right, ya que por el "position-fixed", los botones se estaban saliendo en los bordes, en celulares.
+*/
+.nav-pills{
+    background-color: rgb(48, 56, 65, 0.9); /* -> #303841 */
+    border-bottom: 1px solid rgba(180, 180, 180, 0.2);
+
+    margin-left: auto;
+    margin-right: auto;
 }

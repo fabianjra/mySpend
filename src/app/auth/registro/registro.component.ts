@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faUser, faLock, faCheck, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl } from "@angular/forms"; //Para el formulario de registro.
 import { Utilities } from 'src/app/shared/utilities';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { Location } from '@angular/common'; //Para volver atras
 import { AuthService } from 'src/app/services/auth.service';
+import { FontawesomeService } from 'src/app/services/fontawesome.service';
 
 @Component({
   selector: 'app-registro',
@@ -14,26 +14,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegistroComponent implements OnInit {
 
-  private txtNombre: any;
-  private txtApellido: any;
-  private txtEmail: any;
-  private txtPassword: any;
-  private txtPasswordConfirm: any;
-
-  //F: PARA REGISTRO DE USUARIO
-  formRegistro = new FormGroup({
-    txtNombre: new FormControl(''),
-    txtApellido: new FormControl(''),
-    txtEmail: new FormControl(''),
-    txtPassword: new FormControl(''),
-    txtPasswordConfirm: new FormControl('')
+  //Variables del formulario. Los nombres de las variables, deben coincidir con los atributos "formControlName"
+  //de cada input en el HTML.
+  frmRegistro = new FormGroup({
+    nombre: new FormControl(''),
+    apellido: new FormControl(''),
+    email: new FormControl(''),
+    password: new FormControl(''),
+    passwordConfirm: new FormControl('')
   });
-
-  //FontAwesome
-  faUser = faUser;
-  faEnvelope = faEnvelope;
-  faLock = faLock;
-  faCheck = faCheck;
 
   public lblError: string;
 
@@ -41,14 +30,10 @@ export class RegistroComponent implements OnInit {
     private router: Router,
     private nav: NavbarService,
     private location: Location,
-    private authService: AuthService) {
+    private authService: AuthService,
+    public fontAwesome:FontawesomeService) {
 
     this.lblError = "";
-    this.txtNombre = this.formRegistro.controls['txtNombre'];
-    this.txtApellido = this.formRegistro.controls['txtApellido'];
-    this.txtEmail = this.formRegistro.controls['txtEmail'];
-    this.txtPassword = this.formRegistro.controls['txtPassword'];
-    this.txtPasswordConfirm = this.formRegistro.controls['txtPasswordConfirm'];
   }
 
   VolverAtras_click() {
@@ -58,27 +43,30 @@ export class RegistroComponent implements OnInit {
   frmRegistro_event() {
     try {
 
-      //Asignacion de variables
-      let nombre = this.txtNombre.value;
-      let email = this.txtEmail.value;
-      let password = this.txtPassword.value;
-      let confirm = this.txtPasswordConfirm.value;
+      //Obtener las variables directamtne del Form.
+      const { nombre, apellido, email, password, passwordConfirm } = this.frmRegistro.value;
 
       this.lblError = "";
 
-      if (nombre == "" || email == "" || password == "" || confirm == "") {
+      if (nombre == "" || email == "" || password == "" || passwordConfirm == "")
+      {
         this.lblError = "Se deben ingresar los datos";
-      } else {
-        if (password != confirm) {
+      }
+      else if(String(password).length < 6)
+      {
+        this.lblError = "La contraseña debe tener al menos 6 caracteres";
+      }
+      else
+      {
+        if (password != passwordConfirm)
+        {
           this.lblError = "La contraseña y la confirmación no coinciden";
-        } else {
+        }
+        else
+        {
+          this.authService.Registrar(email, passwordConfirm);
 
-          //Obtener las variables directamtne del Form.
-          //const {txtEmail, txtPasswordConfirm} = this.formRegistro.value;
-
-          this.authService.Registrar(email, confirm);
-
-          this.lblError = "registro en construcción";
+          this.lblError = "registro en construcción. Se ha creado el usuario y puede ser utilizado para loguearse";
         }
       }
 
