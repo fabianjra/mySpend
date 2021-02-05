@@ -5,7 +5,9 @@
 
 /* Enlace del TAB seleccioando en negrita y color verde */
 .nav-link.active {
-    background: radial-gradient(circle, rgb(3, 160, 180) 0%, rgb(62, 226, 207) 100%);
+    background: linear-gradient(90deg, rgba(58, 215, 196, 1) 0%, rgba(1, 183, 208, 1) 100%); /*ORIGINAL*/
+    /* background: radial-gradient(circle, rgb(3, 160, 180) 0%, rgb(62, 226, 207) 100%); */ /* CIRCULAR */
+
     color: #ffffff;
     font-family: 'Montserrat-SemiBold', sans-serif !important;
 }
@@ -16,7 +18,8 @@
     /* up, right, bottom, left */
     padding: 25px 0px 25px 0px; 
 
-    background: radial-gradient(circle, rgba(86,96,108,0.6182969674556213) 0%, rgba(99,109,128,0.02066383136094674) 100%);
+     /*background: linear-gradient(90deg, rgba(86,96,108,0.6182969674556213) 0%, rgba(99,109,128,0.02066383136094674) 100%); */ /* HORIZONTAL */
+    background: radial-gradient(circle, rgba(86,96,108,0.6182969674556213) 0%, rgba(99,109,128,0.02066383136094674) 100%); /* CIRCULAR */
 }
 
 /*

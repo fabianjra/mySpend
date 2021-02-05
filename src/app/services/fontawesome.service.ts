@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
-import { faEnvelope, faLock, faUser, faCheck, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import{ faEnvelope, faLock, faUser, faCheck, faChevronRight, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable()
 export class FontawesomeService {
 
   constructor() { }
 
-  //Para login
+  //Login
   public faEnvelope = faEnvelope;
   public faLock = faLock;
+  public faEye = faEye;
+  public faEyeSlash = faEyeSlash;
 
-  //Para registro
+  //Registro
   public faUser = faUser;
   public faCheck = faCheck;
 
+  //Ajustes (menu)
   public faChevronRight = faChevronRight;
 }

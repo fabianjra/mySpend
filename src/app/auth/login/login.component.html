@@ -16,13 +16,23 @@
     </div>
 
     <div class="input-group form-group">
+
         <div class="input-group-prepend">
             <span class="input-group-text">
                 <fa-icon [icon]="this.fontAwesome.faLock"></fa-icon>
             </span>
         </div>
-        <input type="password" formControlName="password" (input)="text_changed()" tabindex="2" class="form-control"
+
+        <input [type]="typeInputPassword" formControlName="password" (input)="text_changed()" tabindex="2" class="form-control"
             placeholder="Contraseña" required="required" title="Ingrese la contraseña" />
+
+        <div class="input-group-append">
+            <span class="input-group-text cursorPointer" title="Mostrar la contraseña"  (click)="ToggleShowPassword()">
+                <fa-icon [icon]="typeInputPasswordFaIcon"></fa-icon>
+            </span>
+
+        </div>
+
     </div>
 
     <div class="form-group">
@@ -56,9 +66,12 @@
     </div>
 
     <div class="text-center">
-        <img title="Facebook" class="img-fluid" src="/assets/icons/imgFacebook.png" alt="logo facebook" tabindex="5">
-        <img title="Twitter" class="img-fluid" src="/assets/icons/imgTwitter.png" alt="logo twitter" tabindex="6">
-        <img title="Google" class="img-fluid" src="/assets/icons/imgGoogle.png" alt="logo google" tabindex="7">
+        <img title="Ingresar con facebook" class="img-fluid cursorPointer" src="/assets/icons/imgFacebook.png"
+            alt="logo facebook" tabindex="5">
+        <img title="Ingresar con twitter" class="img-fluid cursorPointer" src="/assets/icons/imgTwitter.png"
+            alt="logo twitter" tabindex="6">
+        <img title="Ingresar con google" class="img-fluid cursorPointer" src="/assets/icons/imgGoogle.png"
+            alt="logo google" tabindex="7">
     </div>
 
 </form>

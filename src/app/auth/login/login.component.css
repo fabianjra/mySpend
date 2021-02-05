@@ -7,3 +7,14 @@
     -moz-box-shadow: rgb(18, 21, 27) 0px 0px 10px 1px;
     box-shadow: rgb(18, 21, 27) 0px 0px 10px 1px;
 }
+
+/* Quita el fondo gris del icono "faEye" */
+/* .showPassword{
+    background-color: rgba(255, 255, 255, 1) !important;
+    border: 0px !important;
+} */
+
+/* Quita el borde derecho del input de password */
+/* .inputPassword{
+    border-right: 0px !important;
+} */
