@@ -28,6 +28,7 @@ import { AjustesComponent } from './components/menu/ajustes/ajustes.component';
 import { NavbarService } from './services/navbar.service';
 import { AuthService } from './services/auth.service';
 import { FontawesomeService } from './services/fontawesome.service';
+import { HistorialComponent } from './components/menu/historial/historial.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FontawesomeService } from './services/fontawesome.service';
     HomeComponent,
     AboutComponent,
     ContactoComponent,
-    AjustesComponent
+    AjustesComponent,
+    HistorialComponent
   ],
   imports: [
     BrowserModule,
