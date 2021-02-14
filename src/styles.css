@@ -57,6 +57,7 @@ body {
 
 .btnVerdeClaro {
     /* background: rgb(58, 215, 196); */
+    /* Verde claro izqueirda: #3AD7C4 || Verde oscuro derecha HEX: #01B7D0 */
     background: linear-gradient(90deg, rgba(58, 215, 196, 1) 0%, rgba(1, 183, 208, 1) 100%); /* HORIZONTAL */
     /* background: radial-gradient(circle, rgb(3, 160, 180) 0%, rgb(62, 226, 207) 100%); */ /* CIRCULAR */
     color: #ffffff;
