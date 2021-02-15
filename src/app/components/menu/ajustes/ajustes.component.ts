@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { FontawesomeService } from 'src/app/services/fontawesome.service';
 import { Utilities } from 'src/app/shared/utilities';
 
@@ -10,14 +11,24 @@ import { Utilities } from 'src/app/shared/utilities';
 })
 export class AjustesComponent implements OnInit {
 
-  constructor(private router: Router, public fontAwesome:FontawesomeService) { }
+  constructor(private router: Router, public fontAwesome: FontawesomeService, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
   CerrarSession_click() {
     try {
-      this.router.navigate(['home']);
+
+      let result = this.authService.Logout();
+      result.then((res) => {
+        this.router.navigate(['home']);
+      })
+        .catch((err) => {
+          let mensaje: string = Utilities.ObtenerMensajeErrorFB(err.code, err.message);
+
+          alert(mensaje); //F: Cambiar a Popup con diseño.
+        })
+
     } catch (error) {
       Utilities.LogErrorThrow((new Error).stack, error);
     }
