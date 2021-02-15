@@ -48,7 +48,51 @@ export class LoginComponent implements OnInit {
 
         let result = this.authService.Login(email, password);
 
-        this.router.navigate(['mainmenu']);
+        result.then((res) => {
+
+          console.log(res);
+
+          //comentarios cuando es stock:
+          let esNuevo = res.additionalUserInfo?.isNewUser;  //boolean
+          let perfil = res.additionalUserInfo?.profile; //undefined
+          let providerID = res.additionalUserInfo?.providerId; //password
+          let nombreUsuario = res.additionalUserInfo?.username; //undefined
+
+          let credenciales = res.credential; //null
+
+          let tipoOperacion = res.operationType;
+
+          let nombre = res.user?.displayName; //null
+          let hotmail = res.user?.email; //fabianjra@hotmai.com
+          let esVerificado = res.user?.emailVerified; //false
+          let esAnonimo = res.user?.isAnonymous; //false
+
+          let fechaCreacion = res.user?.metadata.creationTime; //Wed, 27 Jan 2021 03:09:59 GMT
+          let fechaUltimoIngreso = res.user?.metadata.lastSignInTime; //Mon, 15 Feb 2021 01:26:34 GMT
+
+          let proveedorID = res.user?.providerId; //firebase
+
+          let factorAuth = res.user?.multiFactor.enrolledFactors;
+
+          let token = res.user?.refreshToken; //AOvuKvTUGWwXFvYfhfW..... (mas)
+          let userID = res.user?.uid; //JYASERTDF...
+          let numeroTelefono = res.user?.phoneNumber; //null
+          let fotoURL = res.user?.photoURL; //null
+
+          let providerData = res.user?.providerData; //objeto
+
+          let tenantID = res.user?.tenantId; //null
+
+          alert("Bienvenido: " + nombre);
+
+          this.router.navigate(['mainmenu']);
+        })
+          .catch((err) => {
+
+            let mensaje: string = Utilities.ObtenerMensajeErrorFB(err.code, err.message);
+
+            this.lblError = mensaje;
+          })
       }
 
     } catch (error) {

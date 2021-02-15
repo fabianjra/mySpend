@@ -116,4 +116,41 @@ export class Utilities {
 
         return nombrePagina;
     }
-}
+
+    public static ObtenerMensajeErrorFB(pCodigo: string, pMensaje: string): string {
+        var mensaje: string = "";
+        try {
+            switch (pCodigo) {
+                case "auth/invalid-email":
+                    mensaje = "Email con formato invalido";
+                    break;
+
+                case "auth/wrong-password":
+                    mensaje = "Email o contraseña incorrecta";
+                    break;
+
+                case "auth/user-not-found":
+                    mensaje = "Email o contraseña incorrecta";
+                    break;
+
+                case "auth/too-many-requests":
+                    mensaje = "Debido a varios intentos de ingreso, se ha bloqueado el usuario temporalmente. Puedes desbloquearlo restaurando la contraseña o puedes intentar ingresar más tarde";
+                    break;
+
+                case "auth/email-already-in-use":
+                    mensaje = "El email ingreso ya se encuentra registrado";
+                    break;
+
+                default:
+                    //Asigna el mensaje original en ingles, obtenido de firebase, en caso de no encontrar el codigo de error.
+                    mensaje = pMensaje;
+                    break;
+            }
+        } catch (error) {
+            this.LogErrorThrow((new Error).stack, error);
+        } finally {
+            return mensaje;
+        }
+    }
+
+}//FIN: Utilidades

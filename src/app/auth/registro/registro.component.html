@@ -7,22 +7,15 @@
             <p class="text-center blanco montserrat-light">Registro de usuario nuevo</p>
         </div>
 
-        <div class="form-row">
-            <div class="input-group form-group col-6">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">
-                        <fa-icon [icon]="this.fontAwesome.faUser"></fa-icon>
-                    </span>
-                </div>
-
-                <input type="" formControlName="nombre" (input)="txt_changed()" tabindex="10" class="form-control"
-                    placeholder="Nombre" required="required" title="Ingrese el nombre de usuario" />
+        <div class="input-group form-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <fa-icon [icon]="this.fontAwesome.faUser"></fa-icon>
+                </span>
             </div>
 
-            <div class="input-group form-group col-6">
-                <input type="" formControlName="apellido" (input)="txt_changed()" tabindex="20" class="form-control"
-                    placeholder="Apellido" title="Ingrese el apellido de usuario" />
-            </div>
+            <input type="" formControlName="nombre" (input)="txt_changed()" tabindex="10" class="form-control"
+                placeholder="Nombre" required="required" title="Ingrese el nombre de usuario" />
         </div>
 
         <div class="input-group form-group">
@@ -41,8 +34,8 @@
                     <fa-icon [icon]="this.fontAwesome.faLock"></fa-icon>
                 </span>
             </div>
-            <input type="password" formControlName="password" (input)="txt_changed()" tabindex="40"
-                class="form-control" placeholder="Contraseña" required="required" title="Ingrese la contraseña" />
+            <input type="password" formControlName="password" (input)="txt_changed()" tabindex="40" class="form-control"
+                placeholder="Contraseña" required="required" title="Ingrese la contraseña" />
         </div>
 
         <div class="input-group form-group">

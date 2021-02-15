@@ -18,7 +18,6 @@ export class RegistroComponent implements OnInit {
   //de cada input en el HTML.
   frmRegistro = new FormGroup({
     nombre: new FormControl(''),
-    apellido: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
     passwordConfirm: new FormControl('')
@@ -31,7 +30,7 @@ export class RegistroComponent implements OnInit {
     private nav: NavbarService,
     private location: Location,
     private authService: AuthService,
-    public fontAwesome:FontawesomeService) {
+    public fontAwesome: FontawesomeService) {
 
     this.lblError = "";
   }
@@ -44,29 +43,39 @@ export class RegistroComponent implements OnInit {
     try {
 
       //Obtener las variables directamtne del Form.
-      const { nombre, apellido, email, password, passwordConfirm } = this.frmRegistro.value;
+      const { nombre, email, password, passwordConfirm } = this.frmRegistro.value;
 
       this.lblError = "";
 
-      if (nombre == "" || email == "" || password == "" || passwordConfirm == "")
-      {
+      if (nombre == "" || email == "" || password == "" || passwordConfirm == "") {
         this.lblError = "Se deben ingresar los datos";
       }
-      else if(String(password).length < 6)
-      {
+      else if (String(password).length < 6) {
         this.lblError = "La contraseña debe tener al menos 6 caracteres";
       }
-      else
-      {
-        if (password != passwordConfirm)
-        {
+      else {
+        if (password != passwordConfirm) {
           this.lblError = "La contraseña y la confirmación no coinciden";
         }
-        else
-        {
-          this.authService.Registrar(email, passwordConfirm);
+        else {
+          let result = this.authService.Registrar(email, passwordConfirm);
 
-          this.lblError = "registro en construcción. Se ha creado el usuario y puede ser utilizado para loguearse";
+          result.then((res) => {
+
+            //se registra el nombre de usuario:
+            res.user?.updateProfile({ displayName: nombre, photoURL: "" });
+            res.user?.sendEmailVerification();
+
+            // res.user?.updatePhoneNumber()
+
+            this.lblError = "registro en construcción. Se ha creado el usuario y puede ser utilizado para loguearse";
+          })
+            .catch((err) => {
+
+              let mensaje: string = Utilities.ObtenerMensajeErrorFB(err.code, err.message);
+
+              this.lblError = mensaje;
+            })
         }
       }
 

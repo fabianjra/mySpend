@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import{ faEnvelope, faLock, faUser, faCheck, faChevronRight, faEye, faEyeSlash, faUtensilSpoon, faMedkit, faGlassCheers } from '@fortawesome/free-solid-svg-icons';
+import{ faEnvelope, faLock, faUser, faCheck, faChevronRight,
+  faEye, faEyeSlash, faUtensilSpoon, faMedkit, faGlassCheers } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable()
 export class FontawesomeService {

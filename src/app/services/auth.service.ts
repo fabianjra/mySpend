@@ -12,14 +12,13 @@ export class AuthService {
   constructor(public afAuth: AngularFireAuth) { }
 
   async Login(email: string, password: string) {
-    const result = await this.afAuth.signInWithEmailAndPassword(email, password)
+    const result = await this.afAuth.signInWithEmailAndPassword(email, password);
 
     return result;
   }
 
-  //F: La contraseña debe validarse con minimo 6 caracteres.
   async Registrar(email: string, password: string) {
-    const result = await this.afAuth.createUserWithEmailAndPassword(email, password)
+    const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
 
     return result;
   }
