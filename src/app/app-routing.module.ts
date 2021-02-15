@@ -6,6 +6,7 @@ import { AboutComponent } from './components/inicio/about/about.component';
 import { ContactoComponent } from './components/inicio/contacto/contacto.component';
 import { HomeComponent } from './components/inicio/home/home.component';
 import { MainmenuComponent } from './components/menu/mainmenu/mainmenu.component';
+import { AuthGuard } from './guards/auth.guard';
 
 /*
 NOTA: Asteriscos (**): Cuando sea una ruta desconocida. Ejem de uso: Error pagina desconocida.
@@ -28,7 +29,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
 
-  { path: 'mainmenu', component: MainmenuComponent },
+  { path: 'mainmenu', component: MainmenuComponent, canActivate: [AuthGuard] },
 
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
