@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate, CanLoad {
     return this.authService.userData$.pipe(
       map(user => {
         if (!user) {
-         //Si el user es null, redirige al menu.
+         //Si el user es null, redirige al home (login).
           this.router.navigate(['home']);
           return false;
         }
