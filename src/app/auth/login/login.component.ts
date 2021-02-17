@@ -19,13 +19,6 @@ export class LoginComponent implements OnInit {
   public typeInputPassword: string;
   public typeInputPasswordFaIcon: any;
 
-  //Variables del formulario. Los nombres de las variables, deben coincidir con los atributos "formControlName"
-  //de cada input en el HTML.
-  frmLogin = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
-  });
-
   //Called first time before the ngOnInit()
   constructor(private router: Router, private authService: AuthService, public fontAwesome: FontawesomeService) {
 
@@ -38,10 +31,16 @@ export class LoginComponent implements OnInit {
   }
 
   //Called after the constructor and called  after the first ngOnChanges()
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  frmLogin_event() {
+  //Variables del formulario. Los nombres de las variables, deben coincidir con los atributos "formControlName"
+  //de cada input en el HTML.
+  frmLogin = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl('')
+  });
+
+  async frmLogin_event() {
     try {
       this.lblError = "";
       this.estaCargando = true;
@@ -54,7 +53,7 @@ export class LoginComponent implements OnInit {
 
         let result = this.authService.Login(email, password);
 
-        result.then((res) => {
+        await result.then((res) => {
 
           console.log(res);
 
@@ -89,14 +88,11 @@ export class LoginComponent implements OnInit {
 
           let tenantID = res.user?.tenantId; //null
 
-          alert("Bienvenido: " + nombre);
-
           this.router.navigate(['mainmenu']);
         })
           .catch((err) => {
 
             let mensaje: string = Utilities.ObtenerMensajeErrorFB(err.code, err.message);
-
             this.lblError = mensaje;
           })
       }
@@ -104,7 +100,7 @@ export class LoginComponent implements OnInit {
     } catch (error) {
       Utilities.LogErrorThrow((new Error).stack, error);
     }
-    finally{
+    finally {
       this.estaCargando = false;
     }
   }
@@ -124,6 +120,7 @@ export class LoginComponent implements OnInit {
   //FUNCION: Cambia el type del input Password a Text y viceversa.
   //Cambia el icono de "faEye", dependiendo si el input es type Password o Text.
   ToggleShowPassword() {
+
     try {
 
       //Se realiza el cambio de color a negro o transparente, solamente cuando sea un telefono o pantalla pequeña.

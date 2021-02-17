@@ -14,16 +14,8 @@ import { FontawesomeService } from 'src/app/services/fontawesome.service';
 })
 export class RegistroComponent implements OnInit {
 
-  //Variables del formulario. Los nombres de las variables, deben coincidir con los atributos "formControlName"
-  //de cada input en el HTML.
-  frmRegistro = new FormGroup({
-    nombre: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-    passwordConfirm: new FormControl('')
-  });
-
   public lblError: string;
+  public estaCargando: boolean;
 
   constructor(
     private router: Router,
@@ -33,63 +25,73 @@ export class RegistroComponent implements OnInit {
     public fontAwesome: FontawesomeService) {
 
     this.lblError = "";
+    this.estaCargando = false;
   }
+
+  ngOnInit(): void {
+    this.nav.show();
+  }
+
+  //Variables del formulario. Los nombres de las variables, deben coincidir con los atributos "formControlName"
+  //de cada input en el HTML.
+  frmRegistro = new FormGroup({
+    nombre: new FormControl(''),
+    email: new FormControl(''),
+    password: new FormControl(''),
+    passwordConfirm: new FormControl('')
+  });
 
   VolverAtras_click() {
     this.location.back();
   }
 
-  frmRegistro_event() {
+  async frmRegistro_event() {
     try {
+      this.lblError = "";
+      this.estaCargando = true;
 
       //Obtener las variables directamtne del Form.
       const { nombre, email, password, passwordConfirm } = this.frmRegistro.value;
 
-      this.lblError = "";
-
       if (nombre == "" || email == "" || password == "" || passwordConfirm == "") {
         this.lblError = "Se deben ingresar los datos";
-      }
-      else if (String(password).length < 6) {
+
+      } else if (String(password).length < 6) {
         this.lblError = "La contraseña debe tener al menos 6 caracteres";
-      }
-      else {
-        if (password != passwordConfirm) {
-          this.lblError = "La contraseña y la confirmación no coinciden";
-        }
-        else {
-          let result = this.authService.Registrar(email, passwordConfirm);
 
-          result.then((res) => {
+      } else if (password != passwordConfirm) {
+        this.lblError = "La contraseña y la confirmación no coinciden";
 
-            //se registra el nombre de usuario:
-            res.user?.updateProfile({ displayName: nombre, photoURL: "" });
-            res.user?.sendEmailVerification();
+      } else {
+        let result = this.authService.Registrar(email, passwordConfirm);
 
-            // res.user?.updatePhoneNumber()
+        await result.then((res) => {
 
-            this.lblError = "registro en construcción. Se ha creado el usuario y puede ser utilizado para loguearse";
+          //se registra el nombre de usuario:
+          res.user?.updateProfile({ displayName: nombre, photoURL: "" });
+          res.user?.sendEmailVerification();
+
+          // res.user?.updatePhoneNumber()
+
+          this.lblError = "registro en construcción. Se ha creado el usuario y puede ser utilizado para loguearse";
+        })
+          .catch((err) => {
+
+            let mensaje: string = Utilities.ObtenerMensajeErrorFB(err.code, err.message);
+            this.lblError = mensaje;
           })
-            .catch((err) => {
-
-              let mensaje: string = Utilities.ObtenerMensajeErrorFB(err.code, err.message);
-
-              this.lblError = mensaje;
-            })
-        }
       }
 
     } catch (error) {
       Utilities.LogErrorThrow((new Error).stack, error);
     }
+    finally {
+      this.estaCargando = false;
+    }
   }
 
   txt_changed(): void {
     this.lblError = "";
-  }
-
-  ngOnInit(): void {
-    this.nav.show();
   }
 
 }

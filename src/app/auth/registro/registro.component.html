@@ -54,8 +54,14 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" title="Iniciar sesión" class="btn btn-block btnVerdeClaro"
+                    <button *ngIf="!estaCargando" type="submit" title="Iniciar sesión" class="btn btn-block btnVerdeClaro"
                         tabindex="60">Registrarse</button>
+
+                    <button *ngIf="estaCargando" title="Cargando" class="btn btn-block btnVerdeClaro" type="button"
+                        disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Cargando...
+                    </button>
                 </div>
 
                 <div class="text-center">
