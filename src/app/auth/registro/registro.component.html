@@ -1,73 +1,78 @@
-<div class="col-12 offset-lg-6 col-lg-6">
+<div class="container">
+    <div class="row">
 
-    <form [formGroup]="frmRegistro" (ngSubmit)="frmRegistro_event()" class="contenedorFormLogin mb-5">
+        <div class="col-12 offset-lg-6 col-lg-6">
+            <form [formGroup]="frmRegistro" (ngSubmit)="frmRegistro_event()" class="contenedorFormLogin mb-5">
 
-        <div class="mb-4">
-            <h1 class="text-center blanco montserrat-thin mb-0">mySpend</h1>
-            <p class="text-center blanco montserrat-light">Registro de usuario nuevo</p>
+                <div class="mb-4">
+                    <h1 class="text-center blanco montserrat-thin">mySpend</h1>
+                    <p class="text-center blanco montserrat-light">Registro de usuario</p>
+                </div>
+
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <fa-icon [icon]="this.fontAwesome.faUser"></fa-icon>
+                        </span>
+                    </div>
+
+                    <input type="" formControlName="nombre" (input)="txt_changed()" tabindex="10" class="form-control"
+                        placeholder="Nombre" required="required" title="Ingrese el nombre de usuario" />
+                </div>
+
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <fa-icon [icon]="this.fontAwesome.faEnvelope"></fa-icon>
+                        </span>
+                    </div>
+                    <input type="email" formControlName="email" (input)="txt_changed()" tabindex="30"
+                        class="form-control" placeholder="Correo electrónico" required="required"
+                        title="Ingrese el correo electrónico" />
+                </div>
+
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <fa-icon [icon]="this.fontAwesome.faLock"></fa-icon>
+                        </span>
+                    </div>
+                    <input type="password" formControlName="password" (input)="txt_changed()" tabindex="40"
+                        class="form-control" placeholder="Contraseña" required="required"
+                        title="Ingrese la contraseña" />
+                </div>
+
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <fa-icon [icon]="this.fontAwesome.faCheck"></fa-icon>
+                        </span>
+                    </div>
+                    <input type="password" formControlName="passwordConfirm" (input)="txt_changed()" tabindex="50"
+                        class="form-control" placeholder="Confirmar contraseña" required="required"
+                        title="Ingrese la confirmación de la contraseña" />
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" title="Iniciar sesión" class="btn btn-block btnVerdeClaro"
+                        tabindex="60">Registrarse</button>
+                </div>
+
+                <div class="text-center">
+                    <label>
+                        <a id="lblError" title="Error al intentar al registrarse" class="rojo"> {{lblError}} </a>
+                    </label>
+                </div>
+
+                <div class="lineaDivisoraGris"></div>
+
+                <div class="offset-2 col-8">
+                    <button type="button" id="" title="Volver" class="btn btn-block btnGris"
+                        (click)="VolverAtras_click()" tabindex="70">Volver</button>
+                </div>
+
+            </form>
         </div>
 
-        <div class="input-group form-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <fa-icon [icon]="this.fontAwesome.faUser"></fa-icon>
-                </span>
-            </div>
-
-            <input type="" formControlName="nombre" (input)="txt_changed()" tabindex="10" class="form-control"
-                placeholder="Nombre" required="required" title="Ingrese el nombre de usuario" />
-        </div>
-
-        <div class="input-group form-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <fa-icon [icon]="this.fontAwesome.faEnvelope"></fa-icon>
-                </span>
-            </div>
-            <input type="email" formControlName="email" (input)="txt_changed()" tabindex="30" class="form-control"
-                placeholder="Correo electrónico" required="required" title="Ingrese el correo electrónico" />
-        </div>
-
-        <div class="input-group form-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <fa-icon [icon]="this.fontAwesome.faLock"></fa-icon>
-                </span>
-            </div>
-            <input type="password" formControlName="password" (input)="txt_changed()" tabindex="40" class="form-control"
-                placeholder="Contraseña" required="required" title="Ingrese la contraseña" />
-        </div>
-
-        <div class="input-group form-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <fa-icon [icon]="this.fontAwesome.faCheck"></fa-icon>
-                </span>
-            </div>
-            <input type="password" formControlName="passwordConfirm" (input)="txt_changed()" tabindex="50"
-                class="form-control" placeholder="Confirmar contraseña" required="required"
-                title="Ingrese la confirmación de la contraseña" />
-        </div>
-
-        <div class="form-group">
-            <button type="submit" title="Iniciar sesión" class="btn btn-block btnVerdeClaro"
-                tabindex="60">Registrarse</button>
-        </div>
-
-        <div class="text-center">
-            <label>
-                <a id="lblError" title="Error al intentar al registrarse" class="rojo"> {{lblError}} </a>
-            </label>
-        </div>
-
-        <div class="lineaDivisoraGris"></div>
-
-        <div class="offset-2 col-8">
-            <button type="button" id="" title="Volver atrás" class="btn btn-block btnGris" (click)="VolverAtras_click()"
-                tabindex="70">Volver atrás</button>
-        </div>
-
-    </form>
-    <!-- FIN: CONTENEDOR LOGIN -->
-
+    </div>
 </div>

@@ -29,6 +29,7 @@ import { NavbarService } from './services/navbar.service';
 import { AuthService } from './services/auth.service';
 import { FontawesomeService } from './services/fontawesome.service';
 import { HistorialComponent } from './components/menu/historial/historial.component';
+import { NotfoundComponent } from './components/inicio/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { HistorialComponent } from './components/menu/historial/historial.compon
     AboutComponent,
     ContactoComponent,
     AjustesComponent,
-    HistorialComponent
+    HistorialComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,

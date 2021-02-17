@@ -5,6 +5,7 @@ import { RegistroComponent } from './auth/registro/registro.component';
 import { AboutComponent } from './components/inicio/about/about.component';
 import { ContactoComponent } from './components/inicio/contacto/contacto.component';
 import { HomeComponent } from './components/inicio/home/home.component';
+import { NotfoundComponent } from './components/inicio/notfound/notfound.component';
 import { MainmenuComponent } from './components/menu/mainmenu/mainmenu.component';
 import { AuthGuard } from './guards/auth.guard';
 
@@ -17,10 +18,11 @@ Secciones:
 1: Espacion vacio
 2: Pantallas estaticas, solo visual.
 3: Pantallas de Authorization.
-4: Pantallas del menu de acciones transaccionales.
+4: Pantallas del menu de acciones transaccionales. (AuthGuard impide que cargue si no esta logueado)
+5: Pagina para cuando no se encuentra una URL.
 */
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'mainmenu', pathMatch: 'full' },
 
   { path: 'home', component: HomeComponent },
   { path: 'contacto', component: ContactoComponent },
@@ -31,7 +33,8 @@ const routes: Routes = [
 
   { path: 'mainmenu', component: MainmenuComponent, canActivate: [AuthGuard] },
 
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  { path: 'notfound', component: NotfoundComponent },
+  { path: '**', redirectTo: 'notfound', pathMatch: 'full' }
 ];
 
 @NgModule({
