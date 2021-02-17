@@ -23,8 +23,8 @@
             </span>
         </div>
 
-        <input [type]="typeInputPassword" formControlName="password" (input)="text_changed()" tabindex="2" class="form-control"
-            placeholder="Contraseña" required="required" title="Ingrese la contraseña" />
+        <input [type]="typeInputPassword" formControlName="password" (input)="text_changed()" tabindex="2"
+            class="form-control" placeholder="Contraseña" required="required" title="Ingrese la contraseña" />
 
         <div class="input-group-append">
             <span class="input-group-text cursorPointer" title="Mostrar la contraseña" (click)="ToggleShowPassword()">
@@ -36,8 +36,14 @@
     </div>
 
     <div class="form-group">
-        <button type="submit" title="Iniciar sesión" class="btn btn-block btnVerdeClaro" tabindex="3">Iniciar
-            sesión</button>
+        <button *ngIf="!estaCargando" type="submit" title="Iniciar sesión" class="btn btn-block btnVerdeClaro" tabindex="3">
+            Iniciar sesión
+        </button>
+
+        <button *ngIf="estaCargando" title="Cargando" class="btn btn-block btnVerdeClaro" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Cargando...
+        </button>
     </div>
 
     <div class="text-center">

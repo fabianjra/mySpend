@@ -14,6 +14,8 @@ import { FontawesomeService } from 'src/app/services/fontawesome.service';
 export class LoginComponent implements OnInit {
 
   public lblError: string;
+  public estaCargando: boolean;
+
   public typeInputPassword: string;
   public typeInputPasswordFaIcon: any;
 
@@ -29,6 +31,8 @@ export class LoginComponent implements OnInit {
 
     //Se inicializan los campos como string vacios
     this.lblError = "";
+    this.estaCargando = false;
+
     this.typeInputPassword = "password";
     this.typeInputPasswordFaIcon = fontAwesome.faEye;
   }
@@ -40,6 +44,8 @@ export class LoginComponent implements OnInit {
   frmLogin_event() {
     try {
       this.lblError = "";
+      this.estaCargando = true;
+
       const { email, password } = this.frmLogin.value;
 
       if (email == "" || password == "") {
@@ -97,6 +103,9 @@ export class LoginComponent implements OnInit {
 
     } catch (error) {
       Utilities.LogErrorThrow((new Error).stack, error);
+    }
+    finally{
+      this.estaCargando = false;
     }
   }
 
