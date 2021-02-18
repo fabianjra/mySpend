@@ -1,20 +1,50 @@
+<div class="row text-center blanco">
+    <div class="col-12">
+        <h1 title="Mes">{{ lblMes }}</h1>
+    </div>
+</div>
+
+<div class="row pb-4 text-center">
+    <div class="col-12">
+
+        <div class="btn-group btn-group-lg" role="group" aria-label="">
+
+            <button type="button" class="btn btn-secondary" title="Ir al mes anterior" (click)="MesAnterior_click()">
+                <span>
+                    <fa-icon [icon]="this.fontAwesome.faChevronLeft"></fa-icon>
+                </span>
+            </button>
+
+            <button type="button" class="btn btn-secondary" title="Ir al mes actual" (click)="MesActual_click()">Mes actual</button>
+
+            <button type="button" class="btn btn-secondary">
+                <span>
+                    <fa-icon [icon]="this.fontAwesome.faChevronRight" title="Ir al sigueinte mes" (click)="MesSiguiente_click()"></fa-icon>
+                </span>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
 <div class="row">
     <div class="col-12">
 
+        <!-- ITEMS -->
         <div class="list-group">
 
-            <!-- ITEMS -->
-            <button type="button" class="list-group-item list-group-item-action">
+            <button type="button" class="pl-2 list-group-item list-group-item-action">
 
                 <div class="d-flex flex-row align-items-center">
 
-                    <div class="p-1 align-self-center anchoFaIcon">
+                    <div class="align-self-center anchoFaIcon">
                         <span>
-                            <fa-icon class="fa-2x" [icon]="this.fontAwesome.faGlassCheers"></fa-icon>
+                            <fa-icon class="fa-lg" [icon]="this.fontAwesome.faGlassCheers"></fa-icon>
                         </span>
                     </div>
 
-                    <div class="mr-auto p-2 align-self-center">
+                    <div class="mr-auto p-1 align-self-center">
 
                         <div class="d-flex flex-column">
                             <div class="d-flex flex-row align-items-center">
@@ -25,11 +55,11 @@
 
                     </div>
 
-                    <div class="p-2 align-self-center">
+                    <div class="pr-2 align-self-center">
                         <span>₡348.080</span>
                     </div>
 
-                    <div class="p-2 align-self-center">
+                    <div class="align-self-center">
                         <span>
                             <fa-icon [icon]="this.fontAwesome.faChevronRight"></fa-icon>
                         </span>
@@ -37,17 +67,17 @@
                 </div>
             </button>
 
-            <button type="button" class="list-group-item list-group-item-action">
+            <button type="button" class="pl-2 list-group-item list-group-item-action">
 
                 <div class="d-flex flex-row align-items-center">
 
-                    <div class="p-1 align-self-center anchoFaIcon">
-                        <span class="w-100">
-                            <fa-icon class="fa-2x" [icon]="this.fontAwesome.faMedkit"></fa-icon>
+                    <div class="align-self-center anchoFaIcon">
+                        <span>
+                            <fa-icon class="fa-lg" [icon]="this.fontAwesome.faMedkit"></fa-icon>
                         </span>
                     </div>
 
-                    <div class="mr-auto p-2 align-self-center">
+                    <div class="mr-auto p-1 align-self-center">
 
                         <div class="d-flex flex-column">
                             <div class="d-flex flex-row align-items-center">
@@ -58,11 +88,11 @@
 
                     </div>
 
-                    <div class="p-2 align-self-center">
+                    <div class="pr-2 align-self-center">
                         <span>₡135.100</span>
                     </div>
 
-                    <div class="p-2 align-self-center">
+                    <div class="align-self-center">
                         <span>
                             <fa-icon [icon]="this.fontAwesome.faChevronRight"></fa-icon>
                         </span>
@@ -70,17 +100,17 @@
                 </div>
             </button>
 
-            <button type="button" class="list-group-item list-group-item-action">
+            <button type="button" class="pl-2 list-group-item list-group-item-action">
 
                 <div class="d-flex flex-row align-items-center">
 
-                    <div class="p-1 align-self-center anchoFaIcon">
-                        <span class="w-100">
-                            <fa-icon class="fa-2x" [icon]="this.fontAwesome.faUtensilSpoon"></fa-icon>
+                    <div class="align-self-center anchoFaIcon">
+                        <span>
+                            <fa-icon class="fa-lg" [icon]="this.fontAwesome.faUtensilSpoon"></fa-icon>
                         </span>
                     </div>
 
-                    <div class="mr-auto p-2 align-self-center">
+                    <div class="mr-auto p-1 align-self-center">
 
                         <div class="d-flex flex-column">
                             <div class="d-flex flex-row align-items-center">
@@ -91,11 +121,11 @@
 
                     </div>
 
-                    <div class="p-2 align-self-center">
+                    <div class="pr-2 align-self-center">
                         <span>₡65.000</span>
                     </div>
 
-                    <div class="p-2 align-self-center">
+                    <div class="align-self-center">
                         <span>
                             <fa-icon [icon]="this.fontAwesome.faChevronRight"></fa-icon>
                         </span>

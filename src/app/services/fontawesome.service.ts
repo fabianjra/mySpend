@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import{ faEnvelope, faLock, faUser, faCheck, faChevronRight,
+import{ faEnvelope, faLock, faUser, faCheck, faChevronLeft, faChevronRight,
   faEye, faEyeSlash, faUtensilSpoon, faMedkit, faGlassCheers } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable()
@@ -18,6 +18,7 @@ export class FontawesomeService {
   public faCheck = faCheck;
 
   //Ajustes (menu)
+  public faChevronLeft = faChevronLeft;
   public faChevronRight = faChevronRight;
 
   //Categorias
