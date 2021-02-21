@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { FormGroup, FormControl } from "@angular/forms"; //Para el formulario de registro.
 import { Utilities } from 'src/app/shared/utilities';
+import { MensajesFirebase } from 'src/app/shared/mensajesfirebase';
 import { AuthService } from 'src/app/services/auth.service';
 import { FontawesomeService } from 'src/app/services/fontawesome.service';
 
@@ -92,7 +93,7 @@ export class LoginComponent implements OnInit {
         })
           .catch((err) => {
 
-            let mensaje: string = Utilities.ObtenerMensajeErrorFB(err.code, err.message);
+            let mensaje: string = MensajesFirebase.ObtenerMensajeErrorFB(err.code, err.message);
             this.lblError = mensaje;
           })
       }

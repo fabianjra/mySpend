@@ -30,6 +30,7 @@ import { AuthService } from './services/auth.service';
 import { FontawesomeService } from './services/fontawesome.service';
 import { HistorialComponent } from './components/menu/historial/historial.component';
 import { NotfoundComponent } from './components/inicio/notfound/notfound.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { NotfoundComponent } from './components/inicio/notfound/notfound.compone
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    NgbModule
   ],
   providers: [NavbarService, AuthService, FontawesomeService],
   bootstrap: [AppComponent]

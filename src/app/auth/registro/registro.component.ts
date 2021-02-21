@@ -6,6 +6,7 @@ import { NavbarService } from 'src/app/services/navbar.service';
 import { Location } from '@angular/common'; //Para volver atras
 import { AuthService } from 'src/app/services/auth.service';
 import { FontawesomeService } from 'src/app/services/fontawesome.service';
+import { MensajesFirebase } from 'src/app/shared/mensajesfirebase';
 
 @Component({
   selector: 'app-registro',
@@ -77,7 +78,7 @@ export class RegistroComponent implements OnInit {
         })
           .catch((err) => {
 
-            let mensaje: string = Utilities.ObtenerMensajeErrorFB(err.code, err.message);
+            let mensaje: string = MensajesFirebase.ObtenerMensajeErrorFB(err.code, err.message);
             this.lblError = mensaje;
           })
       }

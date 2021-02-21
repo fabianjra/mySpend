@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { NavbarService } from 'src/app/services/navbar.service';
+import { MensajesFirebase } from 'src/app/shared/mensajesfirebase';
 import { Utilities } from 'src/app/shared/utilities';
 
 @Component({
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
         }
       })
         .catch((err) => {
-          let mensaje: string = Utilities.ObtenerMensajeErrorFB(err.code, err.message);
+          let mensaje: string = MensajesFirebase.ObtenerMensajeErrorFB(err.code, err.message);
           alert(mensaje); //F: Cambiar a Popup con diseño.
         })
 

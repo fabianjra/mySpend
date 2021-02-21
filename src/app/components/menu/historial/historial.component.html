@@ -15,11 +15,13 @@
                 </span>
             </button>
 
-            <button type="button" class="btn btn-secondary" title="Ir al mes actual" (click)="MesActual_click()">Mes actual</button>
+            <button type="button" class="btn btn-secondary" title="Ir al mes actual" (click)="MesActual_click()">Mes
+                actual</button>
 
             <button type="button" class="btn btn-secondary">
                 <span>
-                    <fa-icon [icon]="this.fontAwesome.faChevronRight" title="Ir al sigueinte mes" (click)="MesSiguiente_click()"></fa-icon>
+                    <fa-icon [icon]="this.fontAwesome.faChevronRight" title="Ir al sigueinte mes"
+                        (click)="MesSiguiente_click()"></fa-icon>
                 </span>
             </button>
         </div>
@@ -34,7 +36,8 @@
         <!-- ITEMS -->
         <div class="list-group">
 
-            <button type="button" class="pl-2 list-group-item list-group-item-action">
+            <button type="button" class="pl-2 list-group-item list-group-item-action"
+                (click)="ModificarItem_click(content)">
 
                 <div class="d-flex flex-row align-items-center">
 
@@ -138,3 +141,38 @@
 
     </div>
 </div>
+
+<!-- MODAL PARA MODIFICAR ITEM -->
+<ng-template #content let-modal>
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Modificar item</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+
+                <label for="dtpFecha">Fecha</label>
+                <div class="input-group">
+                    <input id="dtpFecha" class="form-control" placeholder="dd/MM/yyyy" name="dp" ngbDatepicker
+                        #dp="ngbDatepicker" (click)="dp.toggle()" readonly>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btnRojo">Eliminar</button>
+        <button type="button" class="btn btnVerdeClaro" ngbAutofocus
+            (click)="modal.close('Save click')">Aceptar</button>
+    </div>
+</ng-template>
+
+
+
+<pre>{{ closeResult }}</pre>

@@ -70,6 +70,11 @@ body {
     color: #ffffff;
 }
 
+.btnRojo{
+    background: linear-gradient(90deg, rgba(222,134,134,1) 0%, rgba(221,119,119,1) 100%);
+    color: #ffffff;
+}
+
 /*******************************
             COLORES
 *******************************/
