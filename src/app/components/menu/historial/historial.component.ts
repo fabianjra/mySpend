@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Historial } from 'src/app/interfaces/historial';
 
 import { FontawesomeService } from 'src/app/services/fontawesome.service';
 import { Utilities } from 'src/app/shared/utilities';
@@ -13,6 +14,8 @@ export class HistorialComponent implements OnInit {
 
   closeResult = '';
 
+  public listaHistorial: Historial[];
+
   public lblMes: string;
   public dateTimeDinamic: Date;
 
@@ -24,10 +27,29 @@ export class HistorialComponent implements OnInit {
 
     this.dateTimeDinamic = dateObj;
     this.lblMes = Utilities.ObtenerNombreMes(month);
+
+    //Carga la lista del historial del usuario.
+    this.listaHistorial = [];
+    //this.CargarHistorial();
   }
 
   ngOnInit(): void {
   }
+
+  CargarHistorial() {
+
+    //Consulta a firebase
+    let arrayFBOriginal = JSON.stringify('{ "Historial" : [ { "IdHistorial": "01", "Categoria": "Salida", "Monto": "145000", "Fecha": "25/05/2021", "Icono": this.fontAwesome.faUtensilSpoon }, { "IdHistorial": "02", "Categoria": "Gasolina", "Monto": "25000", "Fecha": "10/05/2021", "Icono": this.fontAwesome.faGlassCheers} ] }');
+
+    console.log(arrayFBOriginal);
+
+    let arrayFB = JSON.parse(arrayFBOriginal);
+
+    console.log(arrayFB);
+
+
+  }
+
 
   async MesAnterior_click() {
     try {

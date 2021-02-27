@@ -23,6 +23,7 @@ import { HomeComponent } from './components/inicio/home/home.component';
 import { AboutComponent } from './components/inicio/about/about.component';
 import { ContactoComponent } from './components/inicio/contacto/contacto.component';
 import { AjustesComponent } from './components/menu/ajustes/ajustes.component';
+import { ResumenComponent } from './components/menu/resumen/resumen.component';
 
 //Servicios
 import { NavbarService } from './services/navbar.service';
@@ -44,7 +45,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ContactoComponent,
     AjustesComponent,
     HistorialComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    ResumenComponent
   ],
   imports: [
     BrowserModule,
