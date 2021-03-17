@@ -42,8 +42,9 @@ export class RegistroComponent implements OnInit {
     passwordConfirm: new FormControl('')
   });
 
-  VolverAtras_click() {
-    this.location.back();
+  IrAlInicio_click() {
+    // this.location.back();
+    this.router.navigate(['home']);
   }
 
   async frmRegistro_event() {
