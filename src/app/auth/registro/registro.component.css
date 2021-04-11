@@ -7,3 +7,12 @@
     -moz-box-shadow: rgb(18, 21, 27) 0px 0px 10px 1px;
     box-shadow: rgb(18, 21, 27) 0px 0px 10px 1px;
 }
+
+/* Etilos para la ventana modal de registro exitoso */
+/* ::ng-deep .modalRegistro .modal-dialog {
+} */
+
+/* Permite centrar el boton del modal */
+.modal-footer {
+    display: block;
+}

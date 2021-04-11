@@ -1,3 +1,8 @@
 .anchoFaIcon{
     width: 30px;
 }
+
+/* Permite a los botones del modal, ajustarse alineadamente al pie del modal */
+.modal-footer {
+    flex-wrap: unset;
+}

@@ -2,7 +2,7 @@
     <div class="row">
 
         <div class="col-12 offset-lg-6 col-lg-6">
-            <form [formGroup]="frmRegistro" (ngSubmit)="frmRegistro_event()" class="contenedorFormLogin mb-5">
+            <form [formGroup]="frmRegistro" (ngSubmit)="frmRegistro_event(contenidoModal)" class="contenedorFormLogin mb-5">
 
                 <div class="mb-4">
                     <h1 class="text-center blanco montserrat-thin">mySpend</h1>
@@ -82,3 +82,21 @@
 
     </div>
 </div>
+
+<!-- MODAL PARA MENSAJE REGISTRO EXITOSO -->
+<ng-template #contenidoModal let-modal>
+
+    <!-- <div class="modal-header">
+        <h5 class="modal-title" id="modal-basic-title">Registro exitoso</h5>
+    </div> -->
+
+    <div class="modal-body">
+        <h4 class="text-center"><b> {{ lblMensajeFinalRegistro }} </b></h4>
+        <p>Se ha creado el usuario y puede ser utilizado para loguearse.</p>
+        <p>Se ha enviado un correo electróncio para que pueda verificar el registro.</p>
+    </div>
+
+    <div class="modal-footer text-center">
+        <button type="submit" class="btn w-50 btnVerdeClaro" ngbAutofocus (click)="btnRegistroExitoso_click()">Aceptar</button>
+    </div>
+</ng-template>

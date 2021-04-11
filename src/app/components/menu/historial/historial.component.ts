@@ -24,9 +24,10 @@ export class HistorialComponent implements OnInit {
 
     let dateObj = new Date(); //Wed Feb 17 2021 20:28:40 GMT-0600 (hora estándar central)
     var month = dateObj.getMonth(); //months from 0-11 -> Se debe recorrer en array de FOR, por eso no se le suma 1.
+    let year = dateObj.getFullYear();
 
     this.dateTimeDinamic = dateObj;
-    this.lblMes = Utilities.ObtenerNombreMes(month);
+    this.lblMes = Utilities.ObtenerNombreMes(month) +"  "+ year;
 
     //Carga la lista del historial del usuario.
     this.listaHistorial = [];
@@ -54,7 +55,7 @@ export class HistorialComponent implements OnInit {
   async MesAnterior_click() {
     try {
       let fechaNueva: Date = Utilities.RestaMesFecha(this.dateTimeDinamic, -1);
-      this.lblMes = Utilities.ObtenerNombreMes(fechaNueva.getMonth());
+      this.lblMes = Utilities.ObtenerNombreMes(fechaNueva.getMonth()) + "  " + fechaNueva.getFullYear();
 
       //Actualiza la fecha dinamica:
       this.dateTimeDinamic = fechaNueva;
@@ -70,7 +71,7 @@ export class HistorialComponent implements OnInit {
   async MesActual_click() {
     try {
       let fechaNueva: Date = new Date();
-      this.lblMes = Utilities.ObtenerNombreMes(fechaNueva.getMonth());
+      this.lblMes = Utilities.ObtenerNombreMes(fechaNueva.getMonth()) + "  " + fechaNueva.getFullYear();
 
       //Actualiza la fecha dinamica:
       this.dateTimeDinamic = fechaNueva;
@@ -86,7 +87,7 @@ export class HistorialComponent implements OnInit {
   async MesSiguiente_click() {
     try {
       let fechaNueva: Date = Utilities.SumaMesFecha(this.dateTimeDinamic, 1);
-      this.lblMes = Utilities.ObtenerNombreMes(fechaNueva.getMonth());
+      this.lblMes = Utilities.ObtenerNombreMes(fechaNueva.getMonth()) + "  " + fechaNueva.getFullYear();
 
       //Actualiza la fecha dinamica:
       this.dateTimeDinamic = fechaNueva;

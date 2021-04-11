@@ -7,6 +7,7 @@ import { Location } from '@angular/common'; //Para volver atras
 import { AuthService } from 'src/app/services/auth.service';
 import { FontawesomeService } from 'src/app/services/fontawesome.service';
 import { MensajesFirebase } from 'src/app/shared/mensajesfirebase';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-registro',
@@ -16,6 +17,7 @@ import { MensajesFirebase } from 'src/app/shared/mensajesfirebase';
 export class RegistroComponent implements OnInit {
 
   public lblError: string;
+  public lblMensajeFinalRegistro: string;
   public estaCargando: boolean;
 
   constructor(
@@ -23,9 +25,11 @@ export class RegistroComponent implements OnInit {
     private nav: NavbarService,
     private location: Location,
     private authService: AuthService,
-    public fontAwesome: FontawesomeService) {
+    public fontAwesome: FontawesomeService,
+    private modalService: NgbModal) {
 
     this.lblError = "";
+    this.lblMensajeFinalRegistro = "";
     this.estaCargando = false;
   }
 
@@ -47,9 +51,10 @@ export class RegistroComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
-  async frmRegistro_event() {
+  async frmRegistro_event(contenidoModal: any) {
     try {
       this.lblError = "";
+      this.lblMensajeFinalRegistro = "";
       this.estaCargando = true;
 
       //Obtener las variables directamtne del Form.
@@ -75,7 +80,14 @@ export class RegistroComponent implements OnInit {
 
           // res.user?.updatePhoneNumber()
 
-          this.lblError = "registro en construcción. Se ha creado el usuario y puede ser utilizado para loguearse";
+          this.lblMensajeFinalRegistro = "¡Felicidades " + nombre + "!";
+          this.modalService.open(contenidoModal, { centered: true, ariaLabelledBy: 'modal-basic-title', windowClass: 'modalRegistro' }).result
+            .then((result) => {
+
+            })
+            .catch((err) => {
+              this.lblError = "Ocurrió un error al cargar los datos, por favor intente nuevamente." + err.message;
+            });
         })
           .catch((err) => {
 
@@ -90,6 +102,11 @@ export class RegistroComponent implements OnInit {
     finally {
       this.estaCargando = false;
     }
+  }
+
+  btnRegistroExitoso_click(): void {
+    this.router.navigate(['home']);
+    this.modalService.dismissAll();
   }
 
   txt_changed(): void {
