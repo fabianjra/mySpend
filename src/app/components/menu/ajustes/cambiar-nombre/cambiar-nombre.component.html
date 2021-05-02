@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+
+            <div class="mb-4">
+                <h1 class="text-center blanco montserrat-thin">Cambiar nombre</h1>
+                <p class="text-center blanco montserrat-light">Cambiar nombre</p>
+            </div>
+
+            <div class="col-12 offset-lg-3 col-lg-6">
+                <form [formGroup]="frmRegistro" (ngSubmit)="frmRegistro_event()"
+                    class="contenedorFormCambiarNombre mb-5">
+
+                    <div class="mb-3">
+                        <label for="txtNombreNuevo" class="form-label blanco">Nombre</label>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <fa-icon [icon]="this.fontAwesome.faUser"></fa-icon>
+                                </span>
+                            </div>
+
+                            <input id="txtNombreNuevo" type="" formControlName="nombreNuevo" (input)="txt_changed()"
+                                tabindex="10" class="form-control" placeholder="" required="required"
+                                title="Ingrese el nombre de usuario" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button *ngIf="!estaCargando" type="submit" title="Iniciar sesión"
+                            class="btn btn-block btnVerdeClaro" tabindex="60">Aceptar</button>
+
+                        <button *ngIf="estaCargando" title="Cargando" class="btn btn-block btnVerdeClaro" type="button"
+                            disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Cargando...
+                        </button>
+                    </div>
+
+                    <div class="text-center">
+                        <label>
+                            <a id="lblError" title="Error al intentar al cambiar el nombre" class="rojo"> {{lblError}}
+                            </a>
+                        </label>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>

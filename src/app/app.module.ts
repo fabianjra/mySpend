@@ -32,6 +32,7 @@ import { FontawesomeService } from './services/fontawesome.service';
 import { HistorialComponent } from './components/menu/historial/historial.component';
 import { NotfoundComponent } from './components/inicio/notfound/notfound.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CambiarNombreComponent } from './components/menu/ajustes/cambiar-nombre/cambiar-nombre.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AjustesComponent,
     HistorialComponent,
     NotfoundComponent,
-    ResumenComponent
+    ResumenComponent,
+    CambiarNombreComponent
   ],
   imports: [
     BrowserModule,

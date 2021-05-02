@@ -33,6 +33,15 @@ export class AjustesComponent implements OnInit {
     } catch (error) {
       Utilities.LogErrorThrow((new Error).stack, error);
     }
-  }
+  }//FIN: METODO
+
+  CambiarNombre_click()
+  {
+    try {
+      this.router.navigate(['cambiarNombre']);
+    } catch (error) {
+      Utilities.LogErrorThrow((new Error).stack, error);
+    }
+  }//FIN: METODO
 
 }

@@ -6,6 +6,7 @@ import { AboutComponent } from './components/inicio/about/about.component';
 import { ContactoComponent } from './components/inicio/contacto/contacto.component';
 import { HomeComponent } from './components/inicio/home/home.component';
 import { NotfoundComponent } from './components/inicio/notfound/notfound.component';
+import { CambiarNombreComponent } from './components/menu/ajustes/cambiar-nombre/cambiar-nombre.component';
 import { MainmenuComponent } from './components/menu/mainmenu/mainmenu.component';
 import { AuthGuard } from './guards/auth.guard';
 
@@ -32,6 +33,8 @@ const routes: Routes = [
   { path: 'registro', component: RegistroComponent },
 
   { path: 'mainmenu', component: MainmenuComponent, canActivate: [AuthGuard] },
+
+  { path: 'cambiarNombre', component: CambiarNombreComponent },
 
   { path: 'notfound', component: NotfoundComponent },
   { path: '**', redirectTo: 'notfound', pathMatch: 'full' }
