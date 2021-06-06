@@ -14,7 +14,7 @@ export class AuthService {
 
   constructor(public afAuth: AngularFireAuth) {
     this.userData$ = this.afAuth.authState;
-   }
+  }
 
   async Login(email: string, password: string) {
     const result = await this.afAuth.signInWithEmailAndPassword(email, password);
@@ -24,6 +24,12 @@ export class AuthService {
 
   async Registrar(email: string, password: string) {
     const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
+
+    return result;
+  }
+
+  async CambiarNombre(nombre: string) {
+    const result = (await this.afAuth.currentUser)?.updateProfile({ displayName: nombre, photoURL: ''})
 
     return result;
   }

@@ -45,9 +45,9 @@
 
 body {
     /* Fondo gradiante azul */
-    /* background: rgb(18,9,157);
-    background: linear-gradient(0deg, rgba(18,9,157,1) 0%, rgba(13,97,184,1) 50%, rgba(2,130,156,1) 100%); */
+    /* background: rgb(18,9,157); */
     background-color: #303841;
+    /* background: linear-gradient(90deg, rgba(69,80,93,1) 0%, rgba(48,56,65,1) 100%); */
     font-family: 'Montserrat-Regular', sans-serif;
 }
 
@@ -73,6 +73,21 @@ body {
 .btnRojo{
     background: linear-gradient(90deg, rgba(222,134,134,1) 0%, rgba(221,119,119,1) 100%);
     color: #ffffff;
+}
+
+/*******************************
+            FORMS
+*******************************/
+
+.contenedorForm {
+    border-radius: 10px;
+    background: gray;
+    padding: 20px;
+    /* background-color: #34445f; */
+    background: linear-gradient(90deg, rgba(68,91,130,1) 0%, rgba(52,68,95,1) 100%); /* HORIZONTAL */
+    -webkit-box-shadow: rgb(18, 21, 27) 0px 0px 10px 1px;
+    -moz-box-shadow: rgb(18, 21, 27) 0px 0px 10px 1px;
+    box-shadow: rgb(18, 21, 27) 0px 0px 10px 1px;
 }
 
 /*******************************

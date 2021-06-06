@@ -1,4 +1,17 @@
 <div class="container">
+
+    <!-- Barra para volver atras -->
+    <div class="row pb-3">
+        <div class="col-12">
+
+            <div class="barraAtras">
+                <button title="Atrás" class="btn btnAtras" tabindex="9" (click)="Atras_click()">&#8249;</button>
+                <p class="blanco">Atras</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido: Form para cambiar el nombre -->
     <div class="row">
         <div class="col-12">
 
@@ -8,11 +21,10 @@
             </div>
 
             <div class="col-12 offset-lg-3 col-lg-6">
-                <form [formGroup]="frmRegistro" (ngSubmit)="frmRegistro_event()"
-                    class="contenedorFormCambiarNombre mb-5">
+                <form [formGroup]="frmRegistro" (ngSubmit)="frmRegistro_event()" class="contenedorForm mb-5">
 
                     <div class="mb-3">
-                        <label for="txtNombreNuevo" class="form-label blanco">Nombre</label>
+                        <label for="txtNombreActual" class="form-label blanco">Nombre actual:</label>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -20,19 +32,34 @@
                                 </span>
                             </div>
 
-                            <input id="txtNombreNuevo" type="" formControlName="nombreNuevo" (input)="txt_changed()"
-                                tabindex="10" class="form-control" placeholder="" required="required"
+                            <input id="txtNombreActual" type="text" tabindex="10"  formControlName="nombreActual"
+                                class="form-control" placeholder="" title="Nombre actual" readonly [(ngModel)]='nombreActual'/>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="txtNombreNuevo" class="form-label blanco">Nuevo nombre:</label>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <fa-icon [icon]="this.fontAwesome.faCheck"></fa-icon>
+                                </span>
+                            </div>
+
+                            <input id="txtNombreNuevo" type="text" formControlName="nombreNuevo" (input)="txt_changed()"
+                                tabindex="11" class="form-control" placeholder="" required="required"
                                 title="Ingrese el nombre de usuario" />
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <button *ngIf="!estaCargando" type="submit" title="Iniciar sesión"
+                        <button *ngIf="!estaCargando" type="submit" title="Cambiar nombre"
                             class="btn btn-block btnVerdeClaro" tabindex="60">Aceptar</button>
 
                         <button *ngIf="estaCargando" title="Cargando" class="btn btn-block btnVerdeClaro" type="button"
                             disabled>
-                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                                tabindex="61"></span>
                             Cargando...
                         </button>
                     </div>
