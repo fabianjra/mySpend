@@ -27,7 +27,7 @@ export class HistorialComponent implements OnInit {
     let year = dateObj.getFullYear();
 
     this.dateTimeDinamic = dateObj;
-    this.lblMes = Utilities.ObtenerNombreMes(month) +"  "+ year;
+    this.lblMes = Utilities.ObtenerNombreMes(month) + "  " + year;
 
     //Carga la lista del historial del usuario.
     this.listaHistorial = [];
@@ -100,6 +100,15 @@ export class HistorialComponent implements OnInit {
     }
   }
 
+  /*
+    The open method returns a modal instance, an object with the following properties:
+
+    close(result) - a method that can be used to close a modal, passing a result
+    dismiss(reason) - a method that can be used to dismiss a modal, passing a reason
+    result - a promise that is resolved when a modal is closed and rejected when a modal is dismissed
+
+    El metodo que llama a "equis", puede ser: Close or Dismiss
+  */
   async ModificarItem_click(content: any) {
     try {
       await this.modalService.open(content, { centered: true, ariaLabelledBy: 'modal-basic-title' }).result

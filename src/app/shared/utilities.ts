@@ -200,4 +200,17 @@ export class Utilities {
         }
     }
 
+    /**
+     * Realiza un trim a un texto.
+     * @param texto - Texto al que se le quiere realizar el trim.
+     * @returns  Si el texto esta vacio, nullo o undefined, retorna un string vacio.
+     */
+    public static TrimTexto(texto: string){
+        if (texto != null && texto != undefined && texto != "") {
+            return texto.replace(/^\s+|\s+$/gm, '');
+        } else {
+            return "";
+        }
+    }
+
 }//FIN: Utilidades

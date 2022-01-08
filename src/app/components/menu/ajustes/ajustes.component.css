@@ -1,0 +1,21 @@
+/* Aplica fondo transparente al modal */
+::ng-deep .ventanaModal .modal-content {
+    background: transparent;
+    border: 0px;
+  }
+
+  .botonCerrar{
+    color: white !important;
+    font-size: 2rem !important;
+    font-weight: 50 !important;
+    text-shadow: 0px !important;
+    /* width: 32px !important;
+    height: 32px !important; */
+    opacity: 1 !important;
+    position: absolute !important;
+    right: 30px !important;
+  }
+
+  .ocultar{
+      display: none;
+  }

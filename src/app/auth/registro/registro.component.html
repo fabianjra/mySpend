@@ -1,7 +1,16 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-12 offset-lg-6 col-lg-6">
+        <div class="col-lg-6 ocultarEnMobile">
+            <h1 class="blanco">mySpend</h1>
+            <p class="blanco">Formulario de registro. 
+                <br>
+                Indica un nombre, un correo electrónico válido para que recibas una confirmación
+                de registro y utiliza una contraseña segura, con un minimo de 6 caracteres.
+            </p>
+        </div>
+
+        <div class="col-12 col-lg-6">
             <form [formGroup]="frmRegistro" (ngSubmit)="frmRegistro_event(contenidoModal)" class="contenedorForm mb-5">
 
                 <div class="mb-4">
@@ -9,6 +18,7 @@
                     <p class="text-center blanco montserrat-light">Registro de usuario</p>
                 </div>
 
+                <label for="txtNombre" class="blanco">Nombre</label>
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
@@ -16,44 +26,47 @@
                         </span>
                     </div>
 
-                    <input type="" formControlName="nombre" (input)="txt_changed()" tabindex="10" class="form-control"
+                    <input id="txtNombre" type="" formControlName="nombre" (input)="txt_changed()" tabindex="10" class="form-control"
                         placeholder="Nombre" required="required" title="Ingrese el nombre de usuario" />
                 </div>
 
+                <label for="txtEmail" class="blanco">Correo electrónico</label>
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
                             <fa-icon [icon]="this.fontAwesome.faEnvelope"></fa-icon>
                         </span>
                     </div>
-                    <input type="email" formControlName="email" (input)="txt_changed()" tabindex="30"
+                    <input id="txtEmail" type="email" formControlName="email" (input)="txt_changed()" tabindex="30"
                         class="form-control" placeholder="Correo electrónico" required="required"
                         title="Ingrese el correo electrónico" />
                 </div>
 
+                <label for="txtPassword" class="blanco">Contraseña</label>
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
                             <fa-icon [icon]="this.fontAwesome.faLock"></fa-icon>
                         </span>
                     </div>
-                    <input type="password" formControlName="password" (input)="txt_changed()" tabindex="40"
+                    <input id="txtPassword" type="password" formControlName="password" (input)="txt_changed()" tabindex="40"
                         class="form-control" placeholder="Contraseña" required="required"
                         title="Ingrese la contraseña" />
                 </div>
 
+                <label for="txtPasswordConfirm" class="blanco">Confirmar contraseña</label>
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
                             <fa-icon [icon]="this.fontAwesome.faCheck"></fa-icon>
                         </span>
                     </div>
-                    <input type="password" formControlName="passwordConfirm" (input)="txt_changed()" tabindex="50"
+                    <input id="txtPasswordConfirm" type="password" formControlName="passwordConfirm" (input)="txt_changed()" tabindex="50"
                         class="form-control" placeholder="Confirmar contraseña" required="required"
                         title="Ingrese la confirmación de la contraseña" />
                 </div>
 
-                <div class="form-group">
+                <div class="form-group mt-5">
                     <button *ngIf="!estaCargando" type="submit" title="Iniciar sesión" class="btn btn-block btnVerdeClaro"
                         tabindex="60">Registrarse</button>
 

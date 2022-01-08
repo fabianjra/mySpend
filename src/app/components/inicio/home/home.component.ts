@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
       })
         .catch((err) => {
           let mensaje: string = MensajesFirebase.ObtenerMensajeErrorFB(err.code, err.message);
-          alert(mensaje); //F: Cambiar a Popup con diseño.
+          alert(mensaje); //TODO: Cambiar a Popup con diseño.
         })
 
     } catch (error) {

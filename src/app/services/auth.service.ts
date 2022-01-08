@@ -10,7 +10,7 @@ export class AuthService {
 
   // public user: User;
 
-  public userData$: Observable<any>; //F: Debe ser <firebase.User>
+  public userData$: Observable<any>; //TODO: Debe ser <firebase.User>
 
   constructor(public afAuth: AngularFireAuth) {
     this.userData$ = this.afAuth.authState;
@@ -36,7 +36,7 @@ export class AuthService {
 
   async Logout() {
     await this.afAuth.signOut();
-    //F: Redirigir afuera, eliminar localstorage, etc.
+    //TODO: Redirigir afuera, eliminar localstorage, etc.
   }
 
   getCurrentUser() {

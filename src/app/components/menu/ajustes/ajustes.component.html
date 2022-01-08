@@ -3,7 +3,7 @@
 
         <div class="list-group">
 
-            <button type="button" (click)="CambiarNombre_click()"
+            <button type="button" (click)="CambiarNombre_click(content)"
                 class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
                 Cambiar mi nombre
                 <span>
@@ -31,3 +31,95 @@
 
     </div>
 </div>
+
+
+<!-- VENTANA MODAL -->
+<ng-template #content let-modal>
+
+    <div class="modal-body">
+
+        <div class="col-12" *ngIf="!registroExitoso">
+            <form [formGroup]="frmRegistro" (ngSubmit)="frmRegistro_event()" class="contenedorForm mb-5">
+
+                <button type="button" class="close botonCerrar" aria-label="Close" (click)="modal.dismiss()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <div class="mb-4">
+                    <h1 class="text-center blanco montserrat-thin">Cambiar nombre</h1>
+                    <p class="text-center blanco montserrat-light">Digite su nuevo nombre</p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="txtNombreActual" class="form-label blanco">Nombre actual:</label>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <fa-icon [icon]="this.fontAwesome.faUser"></fa-icon>
+                            </span>
+                        </div>
+
+                        <input id="txtNombreActual" type="text" tabindex="10" formControlName="nombreActual"
+                            class="form-control" placeholder="" title="Nombre actual" readonly
+                            [(ngModel)]='nombreActual' />
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="txtNombreNuevo" class="form-label blanco">Nombre nuevo:</label>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <fa-icon [icon]="this.fontAwesome.faCheck"></fa-icon>
+                            </span>
+                        </div>
+
+                        <input id="txtNombreNuevo" type="text" formControlName="nombreNuevo" (input)="txt_changed()"
+                            tabindex="11" class="form-control" placeholder="" required="required"
+                            title="Ingrese el nombre de usuario" maxlength="20" ngbAutofocus/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button *ngIf="!estaCargando" type="submit" title="Cambiar nombre"
+                        class="btn btn-block btnVerdeClaro" tabindex="60">Aceptar</button>
+
+                    <button *ngIf="estaCargando" title="Cargando" class="btn btn-block btnVerdeClaro" type="button"
+                        disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                            tabindex="61"></span>
+                        Cargando...
+                    </button>
+                </div>
+
+                <div class="text-center">
+                    <label>
+                        <a id="lblError" title="Error al intentar al cambiar el nombre" class="rojo"> {{lblError}}
+                        </a>
+                    </label>
+                </div>
+
+            </form>
+        </div>
+
+
+        <div class="col-12" *ngIf="registroExitoso">
+            <form class="contenedorForm mb-5">
+
+                <div class="mb-4">
+                    <h1 class="text-center blanco montserrat-thin">Cambio realizado</h1>
+                    <p class="text-center blanco montserrat-light">Su nuevo nombre es: <b>{{nuevoNombreTrim}}</b> </p>
+                </div>
+
+                <div class="form-group">
+                    <button title="Cambiar nombre"
+                        class="btn btn-block btnVerdeClaro" tabindex="60" (click)="modal.close()">Cerrar</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+    <!-- FIN: Modal Body -->
+
+</ng-template>
