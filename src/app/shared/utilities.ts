@@ -1,3 +1,5 @@
+import { Respuesta } from "../interfaces/respuesta";
+
 export class Utilities {
 
     /**
@@ -205,12 +207,76 @@ export class Utilities {
      * @param texto - Texto al que se le quiere realizar el trim.
      * @returns  Si el texto esta vacio, nullo o undefined, retorna un string vacio.
      */
-    public static TrimTexto(texto: string){
-        if (texto != null && texto != undefined && texto != "") {
+    public static TrimTexto(texto: string): string {
+        if (this.StringConContenido(texto)) {
             return texto.replace(/^\s+|\s+$/gm, '');
         } else {
             return "";
         }
+    }
+
+    /**
+     * Valida que un string no esté vacio.
+     * @param texto - Texto al que se le quiere realizar la validacion de vacio.
+     * @returns  Si el texto esta vacio, nullo o undefined, retorna un False.
+     */
+    public static StringConContenido(texto: string): Boolean {
+        if (texto == "" || texto == '' || texto == undefined || texto == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Valida que una contraseña sea correcta. En caso de haber un error, envia el codigo de error y la respuesta.
+     * @param password Contraseña a la que se le requiren validar los caracteres.
+     * @returns Obejto respuesta: Codigo de respuesta (0 = correcto). Mensaje Respuesta (msj error en caso de haberlo).
+     */
+    public static ValidarPassword(password: string) {
+        let res: Respuesta = new Respuesta();
+        res.CodigoRespuesta = 0;
+        res.MensajeRespuesta = "Contraseña valida";
+
+        if (this.StringConContenido(password) == false) {
+            res.CodigoRespuesta = 99;
+            res.MensajeRespuesta = "Se deben ingresar los datos";
+
+        } else if (password.length < 6) {
+            res.CodigoRespuesta = 99;
+            res.MensajeRespuesta = "La contraseña debe tener al menos 6 caracteres";
+
+        } else if (password.length > 20) {
+            res.CodigoRespuesta = 99;
+            res.MensajeRespuesta = "La contraseña no debe tener más de 20 caracteres";
+
+        }
+
+        return res;
+    }
+
+    /**
+     * Valida que un grupo de contraseñas sean correctas. En caso de haber un error, envia el codigo de error y la respuesta.
+     * @param passwordList Grupo de contraseñas a la que se le requiren validar los caracteres.
+     * @returns Obejto respuesta: Codigo de respuesta (0 = correcto). Mensaje Respuesta (msj error en caso de haberlo).
+     */
+    public static ValidarGrupoPasswords(passwordList: Array<string>) {
+        let res: Respuesta = new Respuesta();
+        res.CodigoRespuesta = 0;
+        res.MensajeRespuesta = "Todas las contraseñas son validas";
+
+        for (let index = 0; index < passwordList.length; index++) {
+
+            let resIndex = this.ValidarPassword(passwordList[index]);
+
+            if (resIndex.CodigoRespuesta != 0) {
+                res.CodigoRespuesta = resIndex.CodigoRespuesta;
+                res.MensajeRespuesta = resIndex.MensajeRespuesta;
+                return res;
+            }
+        }
+
+        return res;
     }
 
 }//FIN: Utilidades

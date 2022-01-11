@@ -6,7 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utilities } from 'src/app/shared/utilities';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
+import { Respuesta } from 'src/app/interfaces/respuesta';
 
 @Component({
   selector: 'app-ajustes',
@@ -15,55 +15,67 @@ import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_c
 })
 export class AjustesComponent implements OnInit {
 
-  public lblError: string;
+  //Iniciar controles generales.
   public estaCargando: boolean;
   public registroExitoso: boolean;
-  public nombreActual: any;
-  public nuevoNombreTrim: string;
+
+  //Iniciar controles Form Cambiar Nombre.
+  public txtNombreActual: FormControl;
+  public txtNombreNuevo: FormControl;
+  public lblErrorNombreCambiar?: string;
+  public frmRegistroCambiarNombre = new FormGroup({
+    nombreActual: new FormControl(''),
+    nombreNuevo: new FormControl('')
+  });
+
+  //para el formulario de passowrd.
+  public txtPasswordActual: FormControl;
+  public txtPasswordNueva: FormControl;
+  public txtPasswordConfirmar: FormControl;
+  public lblErrorPasswordCambiar?: string;
+  public frmRegistroCambiarPassword = new FormGroup({
+    passwordActual: new FormControl(''),
+    passwordNueva: new FormControl(''),
+    passwordConfirmar: new FormControl('')
+  });
 
   constructor(private router: Router,
     public fontAwesome: FontawesomeService,
     private authService: AuthService,
     private modalService: NgbModal) {
-    this.lblError = "";
+
+    //Controles generales.
     this.estaCargando = false;
     this.registroExitoso = false;
-    this.nombreActual = "";
-    this.nuevoNombreTrim = "";
-    this.frmRegistro.controls['nombreActual'].disable();
+
+    //Para el Form Cambiar Nombre
+    this.lblErrorNombreCambiar = "";
+    this.txtNombreActual = this.frmRegistroCambiarNombre.controls['nombreActual'] as FormControl;
+    this.txtNombreNuevo = this.frmRegistroCambiarNombre.controls['nombreNuevo'] as FormControl;
+    // this.frmRegistroCambiarNombre.controls['nombreActual'].disable();
+
+    //Para el Form Cambiar Password:
+    this.lblErrorPasswordCambiar = "";
+    this.txtPasswordActual = this.frmRegistroCambiarPassword.controls['passwordActual'] as FormControl;
+    this.txtPasswordNueva = this.frmRegistroCambiarPassword.controls['passwordNueva'] as FormControl;
+    this.txtPasswordConfirmar = this.frmRegistroCambiarPassword.controls['passwordConfirmar'] as FormControl;
   }
+
+  /****************************************************************************************/
+  /*                                    GENERALES                                        
+  /****************************************************************************************/
 
   ngOnInit(): void {
     try {
-      this.CargarNombreUsuario();
+      //Anteriormente se cargaba aqui el nombre de usuario.
+      //Ahora se carga tomando el FormControl y asignandole el texto, desde el boton de cambiar nombre.
     } catch (error) {
       Utilities.LogErrorThrow((new Error).stack, error);
     }
   }
 
-  CargarNombreUsuario(): void {
-    //Carga el nombre del usuario actual
-    let result = this.authService.getCurrentUser();
-
-    result.then((res) => {
-      this.nombreActual = res?.displayName;
-    })
-      .catch((err) => {
-        let mensaje: string = MensajesFirebase.ObtenerMensajeErrorFB(err.code, err.message);
-        this.lblError = mensaje;
-      })
-  }
-
-  //Variables del formulario. Los nombres de las variables, deben coincidir con los atributos "formControlName"
-  //de cada input en el HTML.
-  frmRegistro = new FormGroup({
-    nombreActual: new FormControl(''),
-    nombreNuevo: new FormControl('')
-  });
-
   CerrarSession_click() {
     try {
-
       let result = this.authService.Logout();
       result.then((res) => {
         this.router.navigate(['home']);
@@ -79,9 +91,33 @@ export class AjustesComponent implements OnInit {
     }
   }//FIN: METODO
 
-  CambiarNombre_click(content: any) {
+  /****************************************************************************************/
+  /*                                 CAMBIAR NOMBRE                                       */
+  /****************************************************************************************/
+
+  //Función para cambiar el nombre
+  CargarNombreUsuario(): void {
+    //Carga el nombre del usuario actual
+    let result = this.authService.getCurrentUser();
+
+    result.then((res) => {
+      this.txtNombreActual.setValue(res?.displayName);
+
+    })
+      .catch((err) => {
+        let mensaje: string = MensajesFirebase.ObtenerMensajeErrorFB(err.code, err.message);
+        this.lblErrorNombreCambiar = mensaje;
+      })
+  }
+
+  //Evento al presionar click sobre opcion de cambiar nombre, en el menu de ajustes
+  CambiarNombre_click(contenidoFormCambiarNombre: any) {
     try {
-      this.modalService.open(content, { windowClass: 'ventanaModal', centered: true, ariaLabelledBy: 'modal-basic-title' }).result
+
+      //Carga el nombre del usuario.
+      this.CargarNombreUsuario();
+
+      this.modalService.open(contenidoFormCambiarNombre, { windowClass: 'ventanaModal', centered: true, ariaLabelledBy: 'modal-basic-title' }).result
         .then((result) => {
           //Close
 
@@ -89,11 +125,16 @@ export class AjustesComponent implements OnInit {
           //esto para que no se vea el efecto de cambio al formulario original, al momento de cerrar la ventana.
           setTimeout(() => {
             this.registroExitoso = false;
-            this.nuevoNombreTrim = "";
+
+            //Resetea el formulario hasta que se cierre la ventana modal, porque si no,
+            //no va a parecer el nuevo nombre en la ventana de confirmacion: "su nuevo nombre es..."
+            this.frmRegistroCambiarNombre.reset();
+
           }, 500);
         },
           (reason) => {
             //Dismiss
+            this.txtNombreNuevo.setValue("");
           });
 
     } catch (error) {
@@ -101,34 +142,32 @@ export class AjustesComponent implements OnInit {
     }
   }//FIN: METODO
 
-  frmRegistro_event() {
+  //Evento que se llama al presionar el boton de aceptar para cambiar nombre.
+  frmCambiarNombre_event() {
     try {
-      this.lblError = "";
+      this.lblErrorNombreCambiar = "";
       this.estaCargando = true;
 
-      //Obtener las variables directamtne del Form.
-      const { nombreActual, nombreNuevo } = this.frmRegistro.value;
-
       //Se hace un trim al texto para evitar espacios vacios
-      this.nuevoNombreTrim = Utilities.TrimTexto(nombreNuevo);
+      //Obtener las variables directamtne del Form.
+      let nombreNuevo = Utilities.TrimTexto(this.txtNombreNuevo.value);
+      this.txtNombreNuevo.setValue(nombreNuevo);
 
-      if (this.nuevoNombreTrim == "") {
-        this.lblError = "Se debe ingresar el nuevo nombre";
-      } else if(this.nuevoNombreTrim.length > 20){
-        this.lblError = "El nombre no puede ser mayor a 20 caracteres";
-      }else {
-        let result = this.authService.CambiarNombre(this.nuevoNombreTrim);
+      if (nombreNuevo == "") {
+        this.lblErrorNombreCambiar = "Se debe ingresar el nuevo nombre";
+      } else if (nombreNuevo.length > 20) {
+        this.lblErrorNombreCambiar = "El nombre no puede ser mayor a 20 caracteres";
+      } else {
+        let result = this.authService.CambiarNombre(nombreNuevo);
 
         result.then((res) => {
-          // this.lblError = "Se ha cambiado correctamente el nombre";
+          //Se ha cambiado correctamente el nombre.
           this.registroExitoso = true;
-          this.frmRegistro.reset();
-          this.CargarNombreUsuario();
         })
           .catch((err) => {
-
+            //Error al cambiar el nombre
             let mensaje: string = MensajesFirebase.ObtenerMensajeErrorFB(err.code, err.message);
-            this.lblError = mensaje;
+            this.lblErrorNombreCambiar = mensaje;
           })
       }
 
@@ -140,8 +179,79 @@ export class AjustesComponent implements OnInit {
     }
   }//FIN: METODO
 
-  txt_changed(): void {
-    this.lblError = "";
+  txtNombreNuevo_changed(): void {
+    this.lblErrorNombreCambiar = "";
+  }
+
+  /****************************************************************************************/
+  /*                                 CAMBIAR PASSWORD                                     */
+  /****************************************************************************************/
+
+  CambiarPassword_click(contenidoFormCambiarPassword: any) {
+    try {
+      this.modalService.open(contenidoFormCambiarPassword, { windowClass: 'ventanaModal', centered: true, ariaLabelledBy: 'modal-basic-title' }).result
+        .then((result) => {
+          //Close
+
+          //cambia al formulario inicial despues de medio segundo.
+          //esto para que no se vea el efecto de cambio al formulario original, al momento de cerrar la ventana.
+          setTimeout(() => {
+            this.registroExitoso = false;
+
+            //Resetea el formulario hasta que se cierre la ventana modal.
+            this.frmRegistroCambiarPassword.reset();
+          }, 500);
+        },
+          (reason) => {
+            //Dismiss
+            this.frmRegistroCambiarPassword.reset();
+          });
+
+    } catch (error) {
+      Utilities.LogErrorThrow((new Error).stack, error);
+    }
+  }//FIN: METODO
+
+  frmCambiarPassword_event() {
+    try {
+      this.lblErrorPasswordCambiar = "";
+      this.estaCargando = true;
+
+      if (Utilities.StringConContenido(this.txtPasswordActual.value) == false) {
+        this.lblErrorPasswordCambiar = "Se debe ingresar la contraseña actual";
+        return; //Finaliza el metodo.
+
+      } else {
+        //TODO: Logica de cambiar passowrd
+        let grupoPasswords: Array<string> = [];
+        grupoPasswords.push(this.txtPasswordNueva.value);
+        grupoPasswords.push(this.txtPasswordConfirmar.value);
+
+        let resValidarPasswords = Utilities.ValidarGrupoPasswords(grupoPasswords);
+
+        if (resValidarPasswords.CodigoRespuesta != 0) {
+          this.lblErrorPasswordCambiar = resValidarPasswords.MensajeRespuesta;
+          return;
+        }
+      }
+
+
+
+
+      //TODO: Quitar Alert.
+      alert("Funcionalidad en construccion");
+      // this.registroExitoso = true;
+
+    } catch (error) {
+      Utilities.LogErrorThrow((new Error).stack, error);
+    }
+    finally {
+      this.estaCargando = false;
+    }
+  }
+
+  txtPasswordCambiar_changed(): void {
+    this.lblErrorPasswordCambiar = "";
   }
 
 }

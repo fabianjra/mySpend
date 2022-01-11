@@ -66,6 +66,9 @@ export class RegistroComponent implements OnInit {
       } else if (String(password).length < 6) {
         this.lblError = "La contraseña debe tener al menos 6 caracteres";
 
+      } else if (String(password).length > 20) {
+        this.lblError = "La contraseña no debe tener más de 20 caracteres";
+        
       } else if (password != passwordConfirm) {
         this.lblError = "La contraseña y la confirmación no coinciden";
 

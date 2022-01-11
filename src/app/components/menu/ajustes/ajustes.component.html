@@ -3,7 +3,7 @@
 
         <div class="list-group">
 
-            <button type="button" (click)="CambiarNombre_click(content)"
+            <button type="button" (click)="CambiarNombre_click(contenidoFormCambiarNombre)"
                 class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
                 Cambiar mi nombre
                 <span>
@@ -11,9 +11,8 @@
                 </span>
             </button>
 
-            <button type="button"
-                class="list-group-item d-flex justify-content-between align-items-center list-group-item-action"
-                disabled>
+            <button type="button" (click)="CambiarPassword_click(contenidoFormCambiarPassword)"
+                class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
                 Cambiar mi contraseña
                 <span>
                     <fa-icon [icon]="this.fontAwesome.faChevronRight"></fa-icon>
@@ -33,19 +32,21 @@
 </div>
 
 
-<!-- VENTANA MODAL -->
-<ng-template #content let-modal>
+<!-- VENTANA CAMBIAR NOMBRE -->
+<ng-template #contenidoFormCambiarNombre let-modal>
 
     <div class="modal-body">
 
         <div class="col-12" *ngIf="!registroExitoso">
-            <form [formGroup]="frmRegistro" (ngSubmit)="frmRegistro_event()" class="contenedorForm mb-5">
+            <form [formGroup]="frmRegistroCambiarNombre" (ngSubmit)="frmCambiarNombre_event()"
+                class="contenedorForm mb-5">
 
                 <button type="button" class="close botonCerrar" aria-label="Close" (click)="modal.dismiss()">
                     <span aria-hidden="true">&times;</span>
                 </button>
 
-                <div class="mb-4">
+                <!-- Se agrega un margin-Left y Margin-Right de 2, para que no toque la "equis de cerrar" en la parte superior derecha -->
+                <div class="mb-4 ml-2 mr-2">
                     <h1 class="text-center blanco montserrat-thin">Cambiar nombre</h1>
                     <p class="text-center blanco montserrat-light">Digite su nuevo nombre</p>
                 </div>
@@ -60,8 +61,7 @@
                         </div>
 
                         <input id="txtNombreActual" type="text" tabindex="10" formControlName="nombreActual"
-                            class="form-control" placeholder="" title="Nombre actual" readonly
-                            [(ngModel)]='nombreActual' />
+                            class="form-control" title="Nombre actual" readonly />
                     </div>
                 </div>
 
@@ -74,9 +74,9 @@
                             </span>
                         </div>
 
-                        <input id="txtNombreNuevo" type="text" formControlName="nombreNuevo" (input)="txt_changed()"
-                            tabindex="11" class="form-control" placeholder="" required="required"
-                            title="Ingrese el nombre de usuario" maxlength="20" ngbAutofocus/>
+                        <input id="txtNombreNuevo" type="text" formControlName="nombreNuevo"
+                            (input)="txtNombreNuevo_changed()" tabindex="11" class="form-control" required="required"
+                            title="Ingrese el nombre de usuario" maxlength="20" ngbAutofocus />
                     </div>
                 </div>
 
@@ -94,7 +94,7 @@
 
                 <div class="text-center">
                     <label>
-                        <a id="lblError" title="Error al intentar al cambiar el nombre" class="rojo"> {{lblError}}
+                        <a title="Error al intentar al cambiar el nombre" class="rojo"> {{lblErrorNombreCambiar}}
                         </a>
                     </label>
                 </div>
@@ -108,18 +108,126 @@
 
                 <div class="mb-4">
                     <h1 class="text-center blanco montserrat-thin">Cambio realizado</h1>
-                    <p class="text-center blanco montserrat-light">Su nuevo nombre es: <b>{{nuevoNombreTrim}}</b> </p>
+                    <p class="text-center blanco montserrat-light">Su nuevo nombre es: <b>{{txtNombreNuevo.value}}</b>
+                    </p>
                 </div>
 
                 <div class="form-group">
-                    <button title="Cambiar nombre"
-                        class="btn btn-block btnVerdeClaro" tabindex="60" (click)="modal.close()">Cerrar</button>
+                    <button title="Cambiar nombre" class="btn btn-block btnVerdeClaro" tabindex="60"
+                        (click)="modal.close()">Cerrar</button>
                 </div>
 
             </form>
         </div>
 
     </div>
-    <!-- FIN: Modal Body -->
+</ng-template>
+<!-- FIN: VENTANA CAMBIAR NOMBRE -->
 
+
+<!-- VENTANA CAMBIAR PASSWORD -->
+<ng-template #contenidoFormCambiarPassword let-modal>
+
+    <div class="modal-body">
+
+        <div class="col-12" *ngIf="!registroExitoso">
+            <form [formGroup]="frmRegistroCambiarPassword" (ngSubmit)="frmCambiarPassword_event()"
+                class="contenedorForm mb-5">
+
+                <button type="button" class="close botonCerrar" aria-label="Close" (click)="modal.dismiss()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <!-- Se agrega un margin-Left y Margin-Right de 2, para que no toque la "equis de cerrar" en la parte superior derecha -->
+                <div class="mb-4 ml-2 mr-2">
+                    <h1 class="text-center blanco montserrat-thin">Cambiar contraseña</h1>
+                    <p class="text-center blanco montserrat-light">Digite su nueva contraseña</p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="txtPasswordActual" class="form-label blanco">Contraseña actual:</label>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <fa-icon [icon]="this.fontAwesome.faLock"></fa-icon>
+                            </span>
+                        </div>
+
+                        <input id="txtPasswordActual" type="password" tabindex="100" formControlName="passwordActual"
+                            (input)="txtPasswordCambiar_changed()" class="form-control" required="required"
+                            title="Ingrese su contraseña actual" ngbAutofocus />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="txtPasswordNueva" class="form-label blanco">Contraseña nueva:</label>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <fa-icon [icon]="this.fontAwesome.faCheck"></fa-icon>
+                            </span>
+                        </div>
+
+                        <input id="txtPasswordNueva" type="password" formControlName="passwordNueva"
+                            (input)="txtPasswordCambiar_changed()" tabindex="110" class="form-control"
+                            required="required" title="Ingrese la contraseña nueva" maxlength="20" />
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="txtPasswordConfirmar" class="form-label blanco">Confirmar contraseña:</label>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <fa-icon [icon]="this.fontAwesome.faCheck"></fa-icon>
+                            </span>
+                        </div>
+
+                        <input id="txtPasswordConfirmar" type="password" formControlName="passwordConfirmar"
+                            (input)="txtPasswordCambiar_changed()" tabindex="111" class="form-control"
+                            required="required" title="Ingrese la confirmación de la contraseña" maxlength="20" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button *ngIf="!estaCargando" type="submit" title="Cambiar contraseña"
+                        class="btn btn-block btnVerdeClaro" tabindex="600">Aceptar</button>
+
+                    <button *ngIf="estaCargando" title="Cargando" class="btn btn-block btnVerdeClaro" type="button"
+                        disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                            tabindex="610"></span>
+                        Cargando...
+                    </button>
+                </div>
+
+                <div class="text-center">
+                    <label>
+                        <a title="Error al intentar al cambiar la contraseña" class="rojo"> {{lblErrorPasswordCambiar}}
+                        </a>
+                    </label>
+                </div>
+
+            </form>
+        </div>
+
+
+        <div class="col-12" *ngIf="registroExitoso">
+            <form class="contenedorForm mb-5">
+
+                <div class="mb-4">
+                    <h1 class="text-center blanco montserrat-thin">Cambio realizado</h1>
+                    <p class="text-center blanco montserrat-light">Debe salir para volver a iniciar seisión con su nueva
+                        contraseña</p>
+                </div>
+
+                <div class="form-group">
+                    <button title="Cambiar nombre" class="btn btn-block btnVerdeClaro" tabindex="600"
+                        (click)="modal.close()">Cerrar</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
 </ng-template>

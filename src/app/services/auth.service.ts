@@ -29,7 +29,13 @@ export class AuthService {
   }
 
   async CambiarNombre(nombre: string) {
-    const result = (await this.afAuth.currentUser)?.updateProfile({ displayName: nombre, photoURL: ''})
+    const result = (await this.afAuth.currentUser)?.updateProfile({ displayName: nombre, photoURL: ''});
+
+    return result;
+  }
+
+  async CambiarPassword(nuevaPassword: string) {
+    const result = (await this.afAuth.currentUser)?.updatePassword(nuevaPassword);
 
     return result;
   }
