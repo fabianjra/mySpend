@@ -6,7 +6,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Utilities } from 'src/app/shared/utilities';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Respuesta } from 'src/app/interfaces/respuesta';
 
 @Component({
   selector: 'app-ajustes',
@@ -28,7 +27,7 @@ export class AjustesComponent implements OnInit {
     nombreNuevo: new FormControl('')
   });
 
-  //para el formulario de passowrd.
+  //Iniciar controles Form Cambiar Password.
   public txtPasswordActual: FormControl;
   public txtPasswordNueva: FormControl;
   public txtPasswordConfirmar: FormControl;
@@ -38,6 +37,13 @@ export class AjustesComponent implements OnInit {
     passwordNueva: new FormControl(''),
     passwordConfirmar: new FormControl('')
   });
+
+  //Iniciar controles Form Verificar Usuario
+  public txtEmailVerificarUsuario: FormControl;
+  public lblErrorVerificarUsuario?: string;
+  public frmVerificarUsuario = new FormGroup({
+    emailVerificarUsuario: new FormControl('')
+  })
 
   constructor(private router: Router,
     public fontAwesome: FontawesomeService,
@@ -59,6 +65,10 @@ export class AjustesComponent implements OnInit {
     this.txtPasswordActual = this.frmRegistroCambiarPassword.controls['passwordActual'] as FormControl;
     this.txtPasswordNueva = this.frmRegistroCambiarPassword.controls['passwordNueva'] as FormControl;
     this.txtPasswordConfirmar = this.frmRegistroCambiarPassword.controls['passwordConfirmar'] as FormControl;
+
+    //Para el Form VerificarUsuario:
+    this.lblErrorVerificarUsuario = "";
+    this.txtEmailVerificarUsuario = this.frmVerificarUsuario.controls['emailVerificarUsuario'] as FormControl;
   }
 
   /****************************************************************************************/
@@ -212,7 +222,7 @@ export class AjustesComponent implements OnInit {
     }
   }//FIN: METODO
 
-  frmCambiarPassword_event() {
+  async frmCambiarPassword_event() {
     try {
       this.lblErrorPasswordCambiar = "";
       this.estaCargando = true;
@@ -221,17 +231,49 @@ export class AjustesComponent implements OnInit {
         this.lblErrorPasswordCambiar = "Se debe ingresar la contraseña actual";
         return; //Finaliza el metodo.
 
+      } else if (this.txtPasswordNueva.value != this.txtPasswordConfirmar.value) {
+        this.lblErrorPasswordCambiar = "La contraseña nueva y la de confirmación no coinciden";
+        return; //Finaliza el metodo.
+
       } else {
-        //TODO: Logica de cambiar passowrd
+        //Valida las contraseñas digitadas, para que cumplan con el estandar.
         let grupoPasswords: Array<string> = [];
         grupoPasswords.push(this.txtPasswordNueva.value);
         grupoPasswords.push(this.txtPasswordConfirmar.value);
 
         let resValidarPasswords = Utilities.ValidarGrupoPasswords(grupoPasswords);
 
+        //Si las contraseñas no tienen el formato estandar minimo, no se permite continuar.
         if (resValidarPasswords.CodigoRespuesta != 0) {
           this.lblErrorPasswordCambiar = resValidarPasswords.MensajeRespuesta;
           return;
+
+        } else {
+          //Si las contraseñas digitadas son correctas, se procede a validar si el usuario está verificado.
+          await this.authService.EsUsuarioVerificado()
+            .then((resUsuarioVerificado) => {
+
+              //Si hay error al validar si el usuario es verificado, se muestra en pantalla.
+              if (resUsuarioVerificado.CodigoRespuesta != 0) {
+                this.lblErrorPasswordCambiar = resUsuarioVerificado.MensajeRespuesta;
+                return;
+
+              } else {
+                //Si el usuario no está verificado, se indica en pantalla que se debe verificar primero.
+                if (resUsuarioVerificado.EsVerificado == false) {
+                  this.lblErrorPasswordCambiar = resUsuarioVerificado.MensajeRespuesta;
+                  return;
+
+                } else {
+                  //El usuario está verificado.
+                  //TODO: validar contraseña actual.
+                  //TODO: Procesar el cambio de password.
+                  console.log("usuario verificado");
+                }
+
+              }
+            });
+
         }
       }
 
@@ -252,6 +294,80 @@ export class AjustesComponent implements OnInit {
 
   txtPasswordCambiar_changed(): void {
     this.lblErrorPasswordCambiar = "";
+  }
+
+  /****************************************************************************************/
+  /*                                 VERIFICAR USUARIO                                    
+  /****************************************************************************************/
+
+  //Evento al presionar click sobre opcion de verificar email, en el menu de ajustes
+  VerificarUsuario_click(contenidoFormVerificarUsuario: any) {
+    try {
+
+      //TODO: Validar si la cuenta esta verificada, para mostrar el PopUp de mensaje de cuenta validada.
+
+      this.modalService.open(contenidoFormVerificarUsuario, { windowClass: 'ventanaModal', centered: true, ariaLabelledBy: 'modal-basic-title' }).result
+        .then((result) => {
+          //Close
+
+          //cambia al formulario inicial despues de medio segundo.
+          //esto para que no se vea el efecto de cambio al formulario original, al momento de cerrar la ventana.
+          setTimeout(() => {
+            this.registroExitoso = false;
+
+            //Resetea el formulario hasta que se cierre la ventana modal.
+            this.frmVerificarUsuario.reset();
+          }, 500);
+        },
+          (reason) => {
+            //Dismiss
+            this.frmVerificarUsuario.reset();
+          });
+
+    } catch (error) {
+      Utilities.LogErrorThrow((new Error).stack, error);
+    }
+  }
+
+  //Evento que se llama al presionar el boton de aceptar para verificar usuario.
+  async frmVerificarUsuario_event() {
+    try {
+      this.lblErrorVerificarUsuario = "";
+      this.estaCargando = true;
+
+      if (Utilities.StringConContenido(this.txtEmailVerificarUsuario.value) == false) {
+        this.lblErrorVerificarUsuario = "Se debe ingresar el correo electrónico";
+        return; //Finaliza el metodo.
+
+      } else {
+        //TODO: Validar el formato de Email.
+
+        await this.authService.EnviarVerificacionUsuario()
+          .then((res) => {
+
+            if (res.CodigoRespuesta != 0) {
+              this.lblErrorVerificarUsuario = res.MensajeRespuesta;
+
+            } else {
+              this.registroExitoso = true;
+            }
+
+          })
+          .catch((err) => {
+            this.lblErrorVerificarUsuario = err;
+          });
+
+      }
+    } catch (error) {
+      Utilities.LogErrorThrow((new Error).stack, error);
+    }
+    finally {
+      this.estaCargando = false;
+    }
+  }
+
+  txtVerificarUsuario_changed(): void {
+    this.lblErrorVerificarUsuario = "";
   }
 
 }

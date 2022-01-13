@@ -1,4 +1,4 @@
-import { Respuesta } from "../interfaces/respuesta";
+import { Respuesta } from "../classes/respuesta";
 
 export class Utilities {
 

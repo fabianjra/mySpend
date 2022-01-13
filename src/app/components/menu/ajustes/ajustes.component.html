@@ -19,6 +19,14 @@
                 </span>
             </button>
 
+            <button type="button" (click)="VerificarUsuario_click(contenidoFormVerificarUsuario)"
+                class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                Validar cuenta
+                <span>
+                    <fa-icon [icon]="this.fontAwesome.faChevronRight"></fa-icon>
+                </span>
+            </button>
+
             <button type="button" (click)="CerrarSession_click()"
                 class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
                 Cerrar sesión
@@ -31,8 +39,9 @@
     </div>
 </div>
 
-
+<!---------------------------->
 <!-- VENTANA CAMBIAR NOMBRE -->
+<!---------------------------->
 <ng-template #contenidoFormCambiarNombre let-modal>
 
     <div class="modal-body">
@@ -124,8 +133,9 @@
 </ng-template>
 <!-- FIN: VENTANA CAMBIAR NOMBRE -->
 
-
+<!------------------------------>
 <!-- VENTANA CAMBIAR PASSWORD -->
+<!------------------------------>
 <ng-template #contenidoFormCambiarPassword let-modal>
 
     <div class="modal-body">
@@ -231,3 +241,87 @@
 
     </div>
 </ng-template>
+<!-- FIN: VENTANA CAMBIAR PASSWORD -->
+
+<!------------------------------->
+<!-- VENTANA VERIFICAR USUARIO -->
+<!------------------------------->
+<ng-template #contenidoFormVerificarUsuario let-modal>
+
+    <div class="modal-body">
+
+        <div class="col-12" *ngIf="!registroExitoso">
+            <form [formGroup]="frmVerificarUsuario" (ngSubmit)="frmVerificarUsuario_event()"
+                class="contenedorForm mb-5">
+
+                <button type="button" class="close botonCerrar" aria-label="Close" (click)="modal.dismiss()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <!-- Se agrega un margin-Left y Margin-Right de 2, para que no toque la "equis de cerrar" en la parte superior derecha -->
+                <div class="mb-4 ml-2 mr-2">
+                    <h1 class="text-center blanco montserrat-thin">Verificar cuenta</h1>
+                    <p class="text-center blanco montserrat-light">Complete el campo para enviar un correo de
+                        verificación</p>
+                </div>
+
+                <div class="mb-3">
+                    <label for="txtEmailVerificarUsuario" class="form-label blanco">Digite su correo
+                        electrónico:</label>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <fa-icon [icon]="this.fontAwesome.faEnvelope"></fa-icon>
+                            </span>
+                        </div>
+
+                        <input id="txtEmailVerificarUsuario" type="text" tabindex="100"
+                            formControlName="emailVerificarUsuario" (input)="txtVerificarUsuario_changed()"
+                            class="form-control" required="required" title="Ingrese su correo electrónico"
+                            ngbAutofocus />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button *ngIf="!estaCargando" type="submit" title="Verificar usuario"
+                        class="btn btn-block btnVerdeClaro" tabindex="600">Enviar</button>
+
+                    <button *ngIf="estaCargando" title="Cargando" class="btn btn-block btnVerdeClaro" type="button"
+                        disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                            tabindex="610"></span>
+                        Cargando...
+                    </button>
+                </div>
+
+                <div class="text-center">
+                    <label>
+                        <a title="Error al intentar al cambiar la contraseña" class="rojo"> {{lblErrorVerificarUsuario}}
+                        </a>
+                    </label>
+                </div>
+
+            </form>
+        </div>
+
+
+        <div class="col-12" *ngIf="registroExitoso">
+            <form class="contenedorForm mb-5">
+
+                <div class="mb-4">
+                    <h1 class="text-center blanco montserrat-thin">Email enviado</h1>
+                    <p class="text-center blanco montserrat-light">Por favor verifique su bandeja de entrada para
+                        validar su cuenta</p>
+                </div>
+
+                <div class="form-group">
+                    <button title="Cambiar nombre" class="btn btn-block btnVerdeClaro" tabindex="600"
+                        (click)="modal.close()">Cerrar</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</ng-template>
+<!-- FIN: VENTANA VERIFICAR USUARIO -->
