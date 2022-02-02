@@ -8,6 +8,10 @@ import { Respuesta } from '../classes/respuesta';
 // import { User } from 'firebase';
 // import { auth } from 'firebase/app';
 
+// import User from 'firebase';
+import firebase from 'firebase/app';
+import "firebase/auth";
+
 @Injectable()
 export class AuthService {
 
@@ -37,16 +41,50 @@ export class AuthService {
     return result;
   }
 
-  async CambiarPassword(nuevaPassword: string) {
-    const result = (await this.afAuth.currentUser)?.updatePassword(nuevaPassword);
+  //TODO: Agregar clase de respuesta para manejo de mensajes y codigos de respuesta.
+  async CambiarPassword(oldPassword: string, newPassword: string): Promise<Respuesta> {
+    let respuesta: Respuesta = new Respuesta(99, "Ocurrió un error al realizar el proceso");
 
-    return result;
+    let currentUserEmail: string = (await this.getCurrentUser())?.email!; //El simbolo ! significa: creame, el valor no va a venir nulo.
+    let credenciales = firebase.auth.EmailAuthProvider.credential(currentUserEmail, oldPassword);
+
+    //Se llama al metodo de reautenticar el usuario con la contraseña digitada, si es correcta, se procese a hacer el update.
+    await this.afAuth.authState.pipe(first()).toPromise()
+      .then(async (resAuth) => {
+
+        await resAuth?.reauthenticateWithCredential(credenciales)
+          .then(async (resReautenticar) => {
+
+            await resAuth.updatePassword(newPassword)
+              .then((resUpdatePassword) => {
+                //Respuesta correcto, se cambio la contraseña.
+                respuesta.CodigoRespuesta = 0;
+                respuesta.MensajeRespuesta = "La contraseña se actualizó correcatamente"
+              })
+              .catch((errUpdatePassword) => {
+                //Error al hacer actualizacion de password.
+                respuesta.CodigoRespuesta = 99;
+                respuesta.MensajeRespuesta = MensajesFirebase.ObtenerMensajeErrorFB(errUpdatePassword.code, errUpdatePassword.message);
+              })
+
+          })
+          .catch((errReautenticar) => {
+            //Error al reautenticar el usuario
+            respuesta.CodigoRespuesta = 99;
+            respuesta.MensajeRespuesta = MensajesFirebase.ObtenerMensajeErrorFB(errReautenticar.code, errReautenticar.message);
+          })
+
+      })
+      .catch((errAuth) => {
+        respuesta.CodigoRespuesta = 99;
+        respuesta.MensajeRespuesta = MensajesFirebase.ObtenerMensajeErrorFB(errAuth.code, errAuth.message);
+      })
+
+    return respuesta;
   }
 
   async EsUsuarioVerificado(): Promise<UsuarioVerificadoRes> {
-    let resUsuario: UsuarioVerificadoRes = new UsuarioVerificadoRes();
-    resUsuario.CodigoRespuesta = 0;
-    resUsuario.MensajeRespuesta = "La cuenta no se encuentra validada, por favor valide su cuenta por medio de la opción: Validar cuenta";
+    let resUsuario: UsuarioVerificadoRes = new UsuarioVerificadoRes(0, "La cuenta no se encuentra validada, por favor valide su cuenta por medio de la opción: Validar cuenta");
     resUsuario.EsVerificado = false;
 
     await this.afAuth.authState.pipe(first()).toPromise()
@@ -66,7 +104,7 @@ export class AuthService {
   }
 
   async EnviarVerificacionUsuario(): Promise<Respuesta> {
-    let respuestaFinal: Respuesta = new Respuesta();
+    let respuestaFinal: Respuesta = new Respuesta(99, "Ocurrió un error al realizar el proceso");
 
     await this.afAuth.authState.pipe(first()).toPromise()
       .then((res) => {

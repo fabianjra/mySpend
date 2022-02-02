@@ -5,15 +5,16 @@
   }
 
   .botonCerrar{
-    color: white !important;
+    color: gray !important;
     font-size: 2rem !important;
     font-weight: 50 !important;
-    text-shadow: 0px !important;
+    text-shadow: none !important;
     /* width: 32px !important;
     height: 32px !important; */
     opacity: 1 !important;
     position: absolute !important;
     right: 30px !important;
+    top: 1px !important;
   }
 
   .ocultar{

@@ -45,6 +45,7 @@ export class MensajesFirebase {
         } catch (error) {
             Utilities.LogErrorThrow((new Error).stack, error);
         } finally {
+            console.log("Mensaje original firebase: " + pMensaje);
             return mensaje;
         }
     }

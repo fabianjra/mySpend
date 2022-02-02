@@ -3,8 +3,8 @@ import { Respuesta } from "./respuesta"
 export class UsuarioVerificadoRes extends Respuesta {
     private esVerificado: boolean;
 
-    constructor() {
-        super();
+    constructor(CodigoRespuesta: number, MensajeRespuesta: string) {
+        super(CodigoRespuesta, MensajeRespuesta)
         this.esVerificado = false;
     }
 

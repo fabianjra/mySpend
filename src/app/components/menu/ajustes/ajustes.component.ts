@@ -145,7 +145,10 @@ export class AjustesComponent implements OnInit {
           (reason) => {
             //Dismiss
             this.txtNombreNuevo.setValue("");
-          });
+          })
+        .finally(() => {
+          this.lblErrorNombreCambiar = "";
+        });
 
     } catch (error) {
       Utilities.LogErrorThrow((new Error).stack, error);
@@ -199,6 +202,8 @@ export class AjustesComponent implements OnInit {
 
   CambiarPassword_click(contenidoFormCambiarPassword: any) {
     try {
+      //TODO: cambiar logica, primero se debe validar si el usuario esta verificado para cambiar el password.
+
       this.modalService.open(contenidoFormCambiarPassword, { windowClass: 'ventanaModal', centered: true, ariaLabelledBy: 'modal-basic-title' }).result
         .then((result) => {
           //Close
@@ -215,7 +220,10 @@ export class AjustesComponent implements OnInit {
           (reason) => {
             //Dismiss
             this.frmRegistroCambiarPassword.reset();
-          });
+          })
+        .finally(() => {
+          this.lblErrorPasswordCambiar = "";
+        });
 
     } catch (error) {
       Utilities.LogErrorThrow((new Error).stack, error);
@@ -251,7 +259,7 @@ export class AjustesComponent implements OnInit {
         } else {
           //Si las contraseñas digitadas son correctas, se procede a validar si el usuario está verificado.
           await this.authService.EsUsuarioVerificado()
-            .then((resUsuarioVerificado) => {
+            .then(async (resUsuarioVerificado) => {
 
               //Si hay error al validar si el usuario es verificado, se muestra en pantalla.
               if (resUsuarioVerificado.CodigoRespuesta != 0) {
@@ -266,24 +274,26 @@ export class AjustesComponent implements OnInit {
 
                 } else {
                   //El usuario está verificado.
-                  //TODO: validar contraseña actual.
-                  //TODO: Procesar el cambio de password.
-                  console.log("usuario verificado");
-                }
+                  await this.authService.CambiarPassword(this.txtPasswordActual.value, this.txtPasswordConfirmar.value)
 
+                    //Si la respuesta es correcta, se valida que el codigo de respuesta sea cero.
+                    .then((res) => {
+                      if (res.CodigoRespuesta == 0) {
+                        this.registroExitoso = true;
+
+                      } else {
+                        this.lblErrorPasswordCambiar = res.MensajeRespuesta;
+                      }
+                    })
+                    .catch((err) => {
+                      //Error al actualizar la contraseña
+                      this.lblErrorPasswordCambiar = MensajesFirebase.ObtenerMensajeErrorFB(err.code, err.message);
+                    })
+                }
               }
             });
-
         }
       }
-
-
-
-
-      //TODO: Quitar Alert.
-      alert("Funcionalidad en construccion");
-      // this.registroExitoso = true;
-
     } catch (error) {
       Utilities.LogErrorThrow((new Error).stack, error);
     }
@@ -322,7 +332,10 @@ export class AjustesComponent implements OnInit {
           (reason) => {
             //Dismiss
             this.frmVerificarUsuario.reset();
-          });
+          })
+        .finally(() => {
+          this.lblErrorVerificarUsuario = "";
+        });
 
     } catch (error) {
       Utilities.LogErrorThrow((new Error).stack, error);

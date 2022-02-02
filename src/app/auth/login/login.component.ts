@@ -92,9 +92,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['mainmenu']);
         })
           .catch((err) => {
-
-            let mensaje: string = MensajesFirebase.ObtenerMensajeErrorFB(err.code, err.message);
-            this.lblError = mensaje;
+            this.lblError =  MensajesFirebase.ObtenerMensajeErrorFB(err.code, err.message);
           })
       }
 

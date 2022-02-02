@@ -234,9 +234,7 @@ export class Utilities {
      * @returns Obejto respuesta: Codigo de respuesta (0 = correcto). Mensaje Respuesta (msj error en caso de haberlo).
      */
     public static ValidarPassword(password: string) {
-        let res: Respuesta = new Respuesta();
-        res.CodigoRespuesta = 0;
-        res.MensajeRespuesta = "Contraseña valida";
+        let res: Respuesta = new Respuesta(0, "Contraseña válida");
 
         if (this.StringConContenido(password) == false) {
             res.CodigoRespuesta = 99;
@@ -261,9 +259,7 @@ export class Utilities {
      * @returns Obejto respuesta: Codigo de respuesta (0 = correcto). Mensaje Respuesta (msj error en caso de haberlo).
      */
     public static ValidarGrupoPasswords(passwordList: Array<string>) {
-        let res: Respuesta = new Respuesta();
-        res.CodigoRespuesta = 0;
-        res.MensajeRespuesta = "Todas las contraseñas son validas";
+        let res: Respuesta = new Respuesta(0, "Todas las contraseñas son válidas");
 
         for (let index = 0; index < passwordList.length; index++) {
 

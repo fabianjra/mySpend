@@ -2,15 +2,15 @@ export class Respuesta {
     private codigoRespuesta: number;
     private mensajeRespuesta: string;
 
-    // constructor(CodigoRespuesta: number, MensajeRespuesta: string){
-    //     this.CodigoRespuesta = CodigoRespuesta;
-    //     this.MensajeRespuesta = MensajeRespuesta;
-    // }
-
-    constructor() {
-        this.codigoRespuesta = 0;
-        this.mensajeRespuesta = "";
+    constructor(CodigoRespuesta: number, MensajeRespuesta: string){
+        this.codigoRespuesta = CodigoRespuesta;
+        this.mensajeRespuesta = MensajeRespuesta;
     }
+
+    // constructor() {
+    //     this.codigoRespuesta = 0;
+    //     this.mensajeRespuesta = "";
+    // }
 
     public get CodigoRespuesta(): number {
         return this.codigoRespuesta;
