@@ -5,9 +5,6 @@ import { Observable } from 'rxjs';
 import { UsuarioVerificadoRes } from '../classes/usuarioVerificadoRes';
 import { MensajesFirebase } from '../shared/mensajesfirebase';
 import { Respuesta } from '../classes/respuesta';
-// import { User } from 'firebase';
-// import { auth } from 'firebase/app';
-
 // import User from 'firebase';
 import firebase from 'firebase/app';
 import "firebase/auth";
@@ -17,10 +14,10 @@ export class AuthService {
 
   // public user: User;
 
-  public userData$: Observable<any>; //TODO: Debe ser <firebase.User>
+  public userData: Observable<firebase.User | null>; //TODO: Debe ser <firebase.User>
 
   constructor(public afAuth: AngularFireAuth) {
-    this.userData$ = this.afAuth.authState;
+    this.userData = this.afAuth.authState;
   }
 
   async Login(email: string, password: string) {
@@ -41,7 +38,6 @@ export class AuthService {
     return result;
   }
 
-  //TODO: Agregar clase de respuesta para manejo de mensajes y codigos de respuesta.
   async CambiarPassword(oldPassword: string, newPassword: string): Promise<Respuesta> {
     let respuesta: Respuesta = new Respuesta(99, "Ocurrió un error al realizar el proceso");
 
@@ -79,6 +75,31 @@ export class AuthService {
         respuesta.CodigoRespuesta = 99;
         respuesta.MensajeRespuesta = MensajesFirebase.ObtenerMensajeErrorFB(errAuth.code, errAuth.message);
       })
+
+    return respuesta;
+  }
+
+  async OlvidoPassword(): Promise<Respuesta> {
+    let respuesta: Respuesta = new Respuesta(99, "Ocurrió un error al realizar el proceso");
+
+    await this.afAuth.authState.pipe(first()).toPromise()
+      .then(async (resAuth) => {
+
+        await resAuth?.sendEmailVerification() //TODO: buscar metodo correcto para resetear passowrd.
+          .then(async (resendPassword) => {
+
+          })
+          .catch((errresendPassword) => {
+            respuesta.CodigoRespuesta = 99;
+            respuesta.MensajeRespuesta = MensajesFirebase.ObtenerMensajeErrorFB(errresendPassword.code, errresendPassword.message);
+          })
+
+      })
+      .catch((errAuth) => {
+        respuesta.CodigoRespuesta = 99;
+        respuesta.MensajeRespuesta = MensajesFirebase.ObtenerMensajeErrorFB(errAuth.code, errAuth.message);
+      })
+
 
     return respuesta;
   }

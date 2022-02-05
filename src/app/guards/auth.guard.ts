@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate, CanLoad {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     //Verificar que exista un usuario logueado
-    return this.authService.userData$.pipe(
+    return this.authService.userData.pipe(
       map(user => {
         if (!user) {
          //Si el user es null, redirige al home (login).
